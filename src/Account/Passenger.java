@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Passenger extends IAccount{
 	
 	
-	Passenger(String username, String password , String email , int mobileNumber){
+	public Passenger(String username, String password , String email , int mobileNumber){
 		this.username = username;
 		this.password = password;
 		this.email = email;

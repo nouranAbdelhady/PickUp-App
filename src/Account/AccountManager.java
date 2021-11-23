@@ -63,6 +63,9 @@ public class AccountManager {
 		
 		for (IAccount singleRegistration : allRegistrants) {
             System.out.println(singleRegistration.type + " : " + singleRegistration.username);
+            if(singleRegistration.type.compareTo("Driver")==0) {
+            	System.out.println("Favorite Areas : " + ((Driver) singleRegistration).getFavoriteAreas());
+            }
         }
 		return allRegistrants;
 	}

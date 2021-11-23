@@ -11,7 +11,7 @@ public class SaveAsList extends DataService{
 	
 	SaveAsList(){
 		this.allRegistrants = new ArrayList<IAccount>();
-		System.out.println("New list created");
+		System.out.println("New list created\n");
 	}
 
 	@Override

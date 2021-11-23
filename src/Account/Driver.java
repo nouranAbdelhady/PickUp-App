@@ -1,13 +1,28 @@
 package Account;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Driver extends IAccount{
 		
 	public int license;
 	public int nationalId;
+	public List<String> favoriteAreas;
 	
-	Driver(String username, String password , String email , int mobileNumber , int license , int nationalId){
+	public List<String> getFavoriteAreas() {
+		return favoriteAreas;
+	}
+	
+	public void setFavoriteAreas(List<String> favoriteAreas) {
+		this.favoriteAreas = favoriteAreas;
+	}
+	
+	public void addToFavoriteAreas(String newArea) {
+		favoriteAreas.add(newArea);
+	}
+
+	public Driver(String username, String password , String email , int mobileNumber , int license , int nationalId){
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -16,6 +31,7 @@ public class Driver extends IAccount{
 		this.isVerified = false;
 		this.license = license;
 		this.nationalId = nationalId;
+		this.favoriteAreas = new ArrayList<String>();
 		this.type = "Driver";
 	}
 	
@@ -38,7 +54,33 @@ public class Driver extends IAccount{
 		System.out.println("Enter national id number:");
 		int nationalid = input.nextInt();
 		
-		IAccount newAcc = new Driver(username,password,email,mobileNu,license,nationalid);
+		Driver newAcc = new Driver(username,password,email,mobileNu,license,nationalid);
+		
+		input.nextLine();	//ignore enter
+		
+		System.out.println("Enter your favourite area:");
+		String newArea = input.nextLine();
+		newAcc.addToFavoriteAreas(newArea);
+		int choice1;
+		do {
+			 System.out.println("1-Add one more favourite Area ");
+			 System.out.println("2-Cancel ");
+			 choice1 = input.nextInt();
+			 
+			 while(choice1>2 || choice1<0) {
+				 System.out.println("Invalid choice, try again");
+				 choice1 = input.nextInt();
+			 }
+			 
+			 if(choice1==1)
+			 {   
+				 System.out.println("Enter the area:");
+				 input.nextLine();	//ignore enter
+				 
+				 newArea = input.nextLine();
+				 newAcc.addToFavoriteAreas(newArea);
+			 }			 
+		 }while(choice1!=2);
 		
 		input.nextLine();
 		//input.close();

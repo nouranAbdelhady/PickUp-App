@@ -50,8 +50,11 @@ public class AdminManager {
 	}
 	
 	public void getAllLoggedIn() {
-		List<IAccount> allRegistrants = accountManager.getAllRegistrants();
+		List<IAccount> allRegistrants = accountManager.getAllRegistrants();	//outputs all
 		
+		
+		System.out.println();
+		System.out.println("Logged in :");
 		for (IAccount singleRegistration : allRegistrants) {
 			if (singleRegistration.isLoggedIn)
 			{
