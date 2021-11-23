@@ -20,6 +20,7 @@ public class Driver extends IAccount{
 	
 	public void addToFavoriteAreas(String newArea) {
 		favoriteAreas.add(newArea);
+		System.out.println(newArea + " successfully added in favorite areas");
 	}
 
 	public Driver(String username, String password , String email , int mobileNumber , int license , int nationalId){

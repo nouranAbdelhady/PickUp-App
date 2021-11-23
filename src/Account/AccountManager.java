@@ -62,10 +62,11 @@ public class AccountManager {
 		List<IAccount> allRegistrants = registrations.savedData.getData();
 		
 		for (IAccount singleRegistration : allRegistrants) {
-            System.out.println(singleRegistration.type + " : " + singleRegistration.username);
+            System.out.print(singleRegistration.type + " : " + singleRegistration.username);
             if(singleRegistration.type.compareTo("Driver")==0) {
-            	System.out.println("Favorite Areas : " + ((Driver) singleRegistration).getFavoriteAreas());
+            	System.out.print(" , Favorite Areas : " + ((Driver) singleRegistration).getFavoriteAreas());
             }
+            System.out.println();
         }
 		return allRegistrants;
 	}

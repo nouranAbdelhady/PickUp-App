@@ -32,6 +32,16 @@ public class Demo {
 		IAccount passenger1 = new Passenger("passenger1","password1","driver1@gmail.com",123);
 		IAccount passenger2 = new Passenger("passenger2","password2","driver2@gmail.com",124);
 		IAccount passenger3 = new Passenger("passenger3","password3","driver3@gmail.com",125);
+		
+		accountManager.Register(driver1);
+		accountManager.Register(driver2);
+		accountManager.Register(driver3);
+		  
+		accountManager.Register(passenger1);
+		accountManager.Register(passenger2);
+		accountManager.Register(passenger3);
+		
+		System.out.println();
 		//////////////////////////////////////////////////
 		
 		while(systemLoop) {
@@ -109,27 +119,13 @@ public class Demo {
 				  case 1:	//Register
 					  System.out.println("Registeration:");
 					  //based on the choice, will create User (1-->Passenger / 2-->Driver)
-					  //accountManager.currentUser = accountFactory.createAccount(accountChoice);
-					  //System.out.println();
-					  //accountManager.Register(accountManager.currentUser);
-					  
-					  
-					  ///////////// Register all (save to list)  //////////////////////
+					  accountManager.currentUser = accountFactory.createAccount(accountChoice);
 					  System.out.println();
-					  accountManager.Register(driver1);
-					  accountManager.Register(driver2);
-					  accountManager.Register(driver3);
-					  
-					  accountManager.Register(passenger1);
-					  accountManager.Register(passenger2);
-					  accountManager.Register(passenger3);
-					  ////////////////////////////////////////////////////
-					  
+					  accountManager.Register(accountManager.currentUser);
 					  
 					  //no break 3ashan ba3d el registration y-login
 					  //break;
 				  case 2:	//Login
-					  System.out.println();
 					  System.out.println("Login:");
 					  input.nextLine();
 					  System.out.println("Enter username:");
@@ -139,37 +135,93 @@ public class Demo {
 					  
 					  if(accountManager.Login(username, password)) {
 						  //while loggedIn
-						  while(userChoice) {
-							  System.out.println();
-							  System.out.println("1-Function 1");
-							  System.out.println("2-Function 2");
-							  System.out.println("3-Logout");
-							  System.out.println("4-Go Back");
-							  
-							  int userFunctionChoice = input.nextInt();
-							  System.out.println();
-							  
-							  switch(userFunctionChoice) {
-							  case 1:	//Function 1
-								  System.out.println("Function 1 called");
-								  break;
-							  case 2:	//Function 2
-								  System.out.println("Function 2 called");						  
-								  break;
-							  case 3:	//Logout
-								  accountManager.Logout();
-								  userChoice = false;
-								  break;
-							  case 4:	//Go back (without logging out)
-								  userChoice = false;
-								  break;
-							  default:
-								 System.out.println("Invalid, try again!");
-								 continue;
+						  if(accountManager.currentUser.type.compareTo("Driver")==0) {		//driver logged in
+
+							  while(userChoice) {
+								  System.out.println();
+								  System.out.println("1-Add new favorite areas");
+								  System.out.println("2-List avaliable rides");
+								  System.out.println("3-Logout");
+								  System.out.println("4-Go Back");
+								  
+								  int userFunctionChoice = input.nextInt();
+								  System.out.println();
+								  
+								  switch(userFunctionChoice) {
+								  case 1:	//Add new favorite areas
+									  	input.nextLine();	//ignore 1
+										System.out.println("Enter your new favourite area:");
+										String newArea = input.nextLine();
+										((Driver) accountManager.currentUser).addToFavoriteAreas(newArea);
+										int choice1;
+										do {
+											System.out.println("1-Add one more favourite Area ");
+											System.out.println("2-Cancel ");
+											choice1 = input.nextInt();
+
+											while (choice1 > 2 || choice1 < 0) {
+												System.out.println("Invalid choice, try again");
+												choice1 = input.nextInt();
+											}
+
+											if (choice1 == 1) {
+												System.out.println("Enter the area:");
+												input.nextLine(); // ignore enter
+
+												newArea = input.nextLine();
+												((Driver) accountManager.currentUser).addToFavoriteAreas(newArea);
+											}
+										} while (choice1 != 2);
+
+										break;
+									  case 2:	//List avaliable rides
+									  //select 1 of the rides ro add offer
+									  System.out.println("Function 2 called");						  
+									  break;
+								  case 3:	//Logout
+									  accountManager.Logout();
+									  userChoice = false;
+									  break;
+								  case 4:	//Go back (without logging out)
+									  userChoice = false;
+									  break;
+								  default:
+									 System.out.println("Invalid, try again!");
+									 continue;
+								  }
 							  }
+							  
 						  }
-					  }
-					  
+						  else	//passenger logged in 
+						  {
+
+							  while(userChoice) {
+								  System.out.println();
+								  System.out.println("1-Request a ride");
+								  System.out.println("2-Logout");
+								  System.out.println("3-Go Back");
+								  
+								  int userFunctionChoice = input.nextInt();
+								  System.out.println();
+								  
+								  switch(userFunctionChoice) {
+								  case 1:	//Function 1
+									  System.out.println("Function 1 called");
+									  break;
+								  case 2:	//Logout
+									  accountManager.Logout();
+									  userChoice = false;
+									  break;
+								  case 3:	//Go back (without logging out)
+									  userChoice = false;
+									  break;
+								  default:
+									 System.out.println("Invalid, try again!");
+									 continue;
+									}
+								}
+							}
+						}
 					  break;
 				  case 3:	//go back
 						 userChoice = false;
