@@ -1,40 +1,48 @@
 package Account;
 
+import java.util.Scanner;
+
 public class Driver extends IAccount{
+		
+	public int license;
+	public int nationalId;
 	
-	static int index = 0;
-	
-	Driver(String username, String password , String email , int mobileNumber){
+	Driver(String username, String password , String email , int mobileNumber , int license , int nationalId){
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.mobileNumber = mobileNumber;
 		this.isLoggedIn = false;
 		this.isVerified = false;
-		this.index++;
+		this.license = license;
+		this.nationalId = nationalId;
+		this.type = "Driver";
 	}
 	
 	Driver(){
-		this.index++;
-		System.out.println("New driver created with index: " + index);
 	}
 
 	@Override
-	public void Login(String username, String password) {
-		//check against stored if correct
-		this.isLoggedIn = true;
-		System.out.println("Driver " + username + " successfully logged in");
-	}
-	
-	@Override
-	public void Logout() {
-		this.isLoggedIn = false;
-		System.out.println("Driver " + username + " logged out");
-	}
-	
-	@Override
-	public void Register(IAccount toRegister) {
-		System.out.println("Driver registration");
+	public IAccount getDetails() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter username:");
+		String username = input.nextLine();
+		System.out.println("Enter password:");
+		String password = input.nextLine();
+		System.out.println("Enter email:");
+		String email = input.nextLine();
+		System.out.println("Enter mobile number:");
+		int mobileNu = input.nextInt();
+		System.out.println("Enter license number:");
+		int license = input.nextInt();
+		System.out.println("Enter national id number:");
+		int nationalid = input.nextInt();
+		
+		IAccount newAcc = new Driver(username,password,email,mobileNu,license,nationalid);
+		
+		input.nextLine();
+		//input.close();
+		return newAcc;
 	}
 
 }

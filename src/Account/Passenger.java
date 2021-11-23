@@ -1,8 +1,9 @@
 package Account;
 
+import java.util.Scanner;
+
 public class Passenger extends IAccount{
 	
-	static int index = 0;
 	
 	Passenger(String username, String password , String email , int mobileNumber){
 		this.username = username;
@@ -11,31 +12,27 @@ public class Passenger extends IAccount{
 		this.mobileNumber = mobileNumber;
 		this.isLoggedIn = false;
 		this.isVerified = true;
-		this.index++;
+		this.type = "Passenger";
 	}
 	
 	Passenger(){
-		this.index++;
-		System.out.println("New passenger created with index: " + index);
 	}
 
 	@Override
-	public void Login(String username, String password) {
-		//check against stored if correct
-		this.isLoggedIn = true;
-		System.out.println("Passenger " + username + " successfully logged in");
+	public IAccount getDetails() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter username:");
+		String username = input.nextLine();
+		System.out.println("Enter password:");
+		String password = input.nextLine();
+		System.out.println("Enter email:");
+		String email = input.nextLine();
+		System.out.println("Enter mobile number:");
+		int mobileNu = input.nextInt();
+		
+		IAccount newAcc = new Passenger(username,password,email,mobileNu);
+		input.nextLine();
+		//input.close();
+		return newAcc;
 	}
-	
-	@Override
-	public void Logout() {
-		this.isLoggedIn = false;
-		System.out.println("Passenger " + username + " logged out");
-	}
-
-	@Override
-	public void Register(IAccount toRegister) {
-		// TODO Auto-generated method stub
-		System.out.println("Passenger registration");
-	}
-
 }

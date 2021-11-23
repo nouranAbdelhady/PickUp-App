@@ -2,12 +2,15 @@ package Account;
 
 public class AccountFactory {
 
+	//gets details to pass to constructor
 	public IAccount createAccount(int accountChoice) {
 		if (accountChoice==1) {
-			return ( new Passenger() );
+			Passenger dummyPassenger =new Passenger();
+			return ( dummyPassenger.getDetails() );
 		}
 		else {
-			return ( new Driver() );
+			Driver dummyDriver =new Driver();
+			return ( dummyDriver.getDetails() );
 		}
 	}
 }

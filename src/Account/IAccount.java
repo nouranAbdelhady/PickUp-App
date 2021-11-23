@@ -2,18 +2,13 @@ package Account;
 
 public abstract class IAccount {
 	
-	protected String username;
-	protected String password;
-	protected Boolean isVerified;
+	public String type;
+	public String username;
+	public String password;
+	public Boolean isVerified;
 	protected String email;
 	protected int mobileNumber;
-	protected Boolean isLoggedIn;
+	public Boolean isLoggedIn;
 	
-	public abstract void Register(IAccount toRegister);
-	
-	//should return Boolean
-	public abstract void Login(String username , String password);
-	
-	public abstract void Logout();
-	
+	public abstract IAccount getDetails();
 }
