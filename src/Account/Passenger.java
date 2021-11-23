@@ -1,6 +1,9 @@
 package Account;
 
+import java.util.List;
 import java.util.Scanner;
+
+import Ride.Ride;
 
 public class Passenger extends IAccount{
 	
@@ -35,4 +38,27 @@ public class Passenger extends IAccount{
 		//input.close();
 		return newAcc;
 	}
+	
+	public Ride requestRide(String source , String destination) {
+		System.out.println("Request ride");
+		Ride newRide = new Ride(source,destination,this);
+		return newRide;
+	}
+	
+	public void notifyDrivers(AccountManager accountManager, Ride requestedRide) {
+		List<Driver> avaliableDrivers = accountManager.getAllDrivers();
+		for (Driver singleDriver : avaliableDrivers) {
+			  if(singleDriver.isVerified) {		//only notify verified
+				  List<String> favAreas = singleDriver.getFavoriteAreas();
+				  for(String favArea : favAreas) {
+					  if(requestedRide.getSource().compareTo(favArea)==0) {
+						  singleDriver.getNotified(requestedRide);
+					  }
+				  }
+			  }  
+		  }
+		
+	}
+	
+	
 }

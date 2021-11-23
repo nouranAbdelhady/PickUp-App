@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import Ride.Offer;
+import Ride.Ride;
+
 public class Driver extends IAccount{
 		
 	public int license;
@@ -87,5 +90,17 @@ public class Driver extends IAccount{
 		//input.close();
 		return newAcc;
 	}
-
+	
+	public Offer suggestPrice(Double newPrice) {
+		Offer newOffer = new Offer(newPrice , this);
+		return newOffer;
+	}
+	
+	public void  getNotified(Ride r1)
+	{
+		System.out.println(this.username+" is notified with ride with source: "+r1.getSource());
+		
+	}
+	
+	
 }

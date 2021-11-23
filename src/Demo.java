@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 import Account.*;
 import Admin.AdminManager;
+import Ride.Offer;
+import Ride.Ride;
+import Ride.RideManager;
 
 public class Demo {
 
@@ -15,6 +18,7 @@ public class Demo {
 				
 		AccountFactory accountFactory = new AccountFactory();
 		AccountManager accountManager = new AccountManager();
+		RideManager rideManager = new RideManager();
 		
 		//////////////	For testing		///////////////////
 		IAccount driver1 = new Driver("driver1","password1","driver1@gmail.com",125,123,95);
@@ -23,7 +27,7 @@ public class Demo {
 		
 		List<String> favArea1 = new ArrayList<String>(Arrays.asList("Giza","Maadi"));
 		List<String> favArea2 = new ArrayList<String>(Arrays.asList("6 October","Giza"));
-		List<String> favArea3 = new ArrayList<String>(Arrays.asList("Gize","6 October","Zamalek"));
+		List<String> favArea3 = new ArrayList<String>(Arrays.asList("Giza","6 October","Zamalek"));
 		
 		((Driver) driver1).setFavoriteAreas(favArea1);
 		((Driver) driver2).setFavoriteAreas(favArea2);
@@ -96,6 +100,7 @@ public class Demo {
 							if(adminChoice==3) {	//get currently logged in
 								adminManager.getAllLoggedIn();
 								System.out.println();
+								continue;
 							}
 						}
 					}
@@ -132,6 +137,7 @@ public class Demo {
 					  String username = input.nextLine();
 					  System.out.println("Enter password:");
 					  String password = input.nextLine();
+					  System.out.println();
 					  
 					  if(accountManager.Login(username, password)) {
 						  //while loggedIn
@@ -174,9 +180,66 @@ public class Demo {
 										} while (choice1 != 2);
 
 										break;
-									  case 2:	//List avaliable rides
-									  //select 1 of the rides ro add offer
-									  System.out.println("Function 2 called");						  
+								  case 2:	//List avaliable rides
+									  //loop over all favorite aread
+									  List<Ride> rides = new ArrayList<Ride>();
+									  for(int i=0 ; i< ((Driver) accountManager.currentUser).favoriteAreas.size() ; i++) 	
+									  {
+										  //get rides with source = favorite area
+									      String currentFavoriteArea = ((Driver) accountManager.currentUser).favoriteAreas.get(i);
+										   List<Ride> subRides = rideManager.getAllRidesWithSource( currentFavoriteArea );
+										   for(Ride subRide : subRides) {
+												  rides.add(subRide);
+										   }
+									  }
+									  
+										for (int i = 0; i < rides.size(); i++) {
+											
+											System.out.println( (i+1) + " : Source: " + rides.get(i).getSource()+ " , Destination: " + rides.get(i).destination);
+											for (int j = 0; j < rides.get(i).offers.size(); j++) {
+												System.out.print("\t Offer " + (j + 1) + ": " + rides.get(i).offers.get(j).price);
+												System.out.print("\t ( " + rides.get(i).offers.get(j).suggestedBy.username + " )\n");
+											}
+											System.out.println();
+										}
+									  
+									  if(rides.size()!=0) {			//offer
+										  do {
+											  	System.out.println();
+												System.out.println("1-Add offer to 1 of the rides ");
+												System.out.println("2-Go back ");
+												choice1 = input.nextInt();
+
+												while (choice1 > 2 || choice1 < 0) {
+													System.out.println("Invalid choice, try again");
+													choice1 = input.nextInt();
+												}
+
+												input.nextLine(); // ignore enter
+												if (choice1 == 1) {
+													//add offer
+													System.out.println("Choose 1 of the rides from above");
+													int rideChoice = input.nextInt();
+													
+													Ride targetedRide = rides.get(rideChoice-1);
+													
+													input.nextLine(); // ignore enter
+													//will use the index to access ride
+													System.out.println("Enter offer price:");
+													Double offerPrice = input.nextDouble();
+													
+													//call function that adds offer to ride
+													Offer newOffer = ((Driver) accountManager.currentUser).suggestPrice(offerPrice);
+													rideManager.updateRide(targetedRide, newOffer);	
+													
+													//notify passenger
+													Passenger requestedBy = targetedRide.getPassenger();
+													System.out.println();
+													System.out.println(requestedBy.username + " is notified with the new price ["+ offerPrice +"]");
+										
+												}
+											} while (choice1 != 2);
+									  }
 									  break;
 								  case 3:	//Logout
 									  accountManager.Logout();
@@ -204,9 +267,21 @@ public class Demo {
 								  int userFunctionChoice = input.nextInt();
 								  System.out.println();
 								  
+								  input.nextLine();
 								  switch(userFunctionChoice) {
 								  case 1:	//Function 1
-									  System.out.println("Function 1 called");
+									  
+									  System.out.println("Enter source: ");
+									  String source = input.nextLine();
+									  System.out.println("Enter destination");
+									  String destination = input.nextLine();
+									  Ride newRide = ((Passenger) accountManager.currentUser).requestRide(source, destination);
+									  rideManager.addRide(newRide);
+									  
+									  System.out.println();
+									  ((Passenger) accountManager.currentUser).notifyDrivers(accountManager, newRide);
+									  
+									  
 									  break;
 								  case 2:	//Logout
 									  accountManager.Logout();
@@ -222,6 +297,7 @@ public class Demo {
 								}
 							}
 						}
+					  
 					  break;
 				  case 3:	//go back
 						 userChoice = false;

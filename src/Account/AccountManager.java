@@ -3,7 +3,7 @@ package Account;
 import java.util.ArrayList;
 import java.util.List;
 
-import Data.Registrations;
+import AccountData.Registrations;
 
 public class AccountManager {
 	Registrations registrations;
