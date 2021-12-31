@@ -28,8 +28,13 @@ public class PassengerController {
     }
     
     @PostMapping("/register/passenger")
-    public boolean add(@RequestBody Passenger newPassenger) {
-        return passengerService.add(newPassenger);
+    public String add(@RequestBody Passenger newPassenger) {
+    	if( passengerService.add(newPassenger) ) {
+        	return "New passenger successfully registered";
+        }
+        else {
+        	return "Error: registration not successful";
+        }
     }
 
     @GetMapping("/passengers")
@@ -48,8 +53,13 @@ public class PassengerController {
     }
     
     @DeleteMapping("delete/passengers/{username}")
-    public boolean delete(@PathVariable String username) {
-        return (passengerService.delete(username) && accountService.delete(username));
+    public String delete(@PathVariable String username) {
+        if( passengerService.delete(username) && accountService.delete(username) ) {
+        	return "Passenger with username:"+username+" successfully deleted.";
+        }
+        else {
+        	return "Error: deletion not successful";
+        }   
     }
     
     @GetMapping("/passengers/{username}/notifications")

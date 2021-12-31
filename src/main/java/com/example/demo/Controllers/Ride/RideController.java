@@ -47,25 +47,29 @@ public class RideController {
 
     //request a new ride
     @PostMapping("/passengers/{username}/add/ride")
-    public Boolean add(@PathVariable String username,@RequestBody Ride ride) {
-    	
-    	APICount++;
+    public String add(@PathVariable String username,@RequestBody Ride ride) {
     	
     	Passenger requestedBy = passengerService.getPassenger(username);
-    	ride.setRequestedBy(requestedBy);
     	
-    	//calculate distance
-    	distanceCalculator = getDistanceCalculationStrategy();
-    	//Google --> 10 / Harvesine --> 20
-    	ride.setDistance(distanceCalculator.calculateDistance());
-    	ride.setETA(distanceCalculator.calculateETA());   	
-    	
-    	//save data to repo
-    	//ride.sub(requestedBy);
-        return rideService.add(ride);
-    }
-
-    
+    	if( requestedBy!=null && requestedBy.getIsLoggedIn() ) {
+    		APICount++;
+    		ride.setRequestedBy(requestedBy);
+        	
+        	//calculate distance
+        	distanceCalculator = getDistanceCalculationStrategy();
+        	//Google --> 10 / Harvesine --> 20
+        	ride.setDistance(distanceCalculator.calculateDistance());
+        	ride.setETA(distanceCalculator.calculateETA());   	
+        	
+        	//save data to repo
+        	//ride.sub(requestedBy);
+            rideService.add(ride);
+            return "New ride with id: "+ride.getRideId()+" requested";
+        }
+        else {
+        	return "Error: Passenger is not logged in";
+        } 	
+    }    
 
 	@GetMapping("/rides")
     public List<Ride> getAll() {
@@ -78,9 +82,13 @@ public class RideController {
     }
 
     @DeleteMapping("/rides/{id}/delete")
-    public boolean delete(@PathVariable int id) {
-        return rideService.delete(id);
+    public String delete(@PathVariable int id) {
+    	if( rideService.delete(id) ) {
+        	return "Ride with id:"+id+" successfully deleted.";
+        }
+        else {
+        	return "Error: deletion not successful";
+        }        	
     }
-    
    
 }

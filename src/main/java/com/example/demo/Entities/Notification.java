@@ -20,14 +20,10 @@ public class Notification {
 		this.message = message;
 	}
 	
-	public Notification(IAccount from, String message) {
-		super();
+	public Notification() {	
 		Notification.counter++;
     	this.setNotificationNumber(Notification.counter);
-		this.message = message;
-	}
-	
-	public Notification() {	
+    	this.message=null;
 	}
 	public Notification(String message) {
 		super();

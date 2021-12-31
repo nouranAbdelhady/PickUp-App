@@ -32,8 +32,8 @@ public class DriverService implements IDriverService {
 	}
 
 	@Override
-	public List<Notification> getNotifications(String username) {
-		return repository.getNotifications(username);
+	public List<Notification> getNotifications(Driver targetedDriver) {
+		return repository.getNotifications(targetedDriver);
 	}
 
 	@Override
@@ -47,13 +47,13 @@ public class DriverService implements IDriverService {
 	}
 
 	@Override
-	public List<FavoriteArea> getFavoriteAreas(String username) {
-		return repository.getFavoriteAreas(username);
+	public List<FavoriteArea> getFavoriteAreas(Driver targetedDriver) {
+		return repository.getFavoriteAreas(targetedDriver);
 	}
 
 	@Override
-	public List<Ride> getavaliableRides(String username) {
-		return repository.getavaliableRides(username);
+	public List<Ride> getavaliableRides(Driver targetedDriver) {
+		return repository.getavaliableRides(targetedDriver);
 	}
 	
 	@Override

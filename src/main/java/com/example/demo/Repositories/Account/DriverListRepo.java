@@ -34,8 +34,7 @@ public class DriverListRepo implements DriverRepository{
 	}
 
 	@Override
-	public List<Notification> getNotifications(String username) {
-		Driver targetedDriver = this.getDriver(username);		//get obj inside the repo
+	public List<Notification> getNotifications(Driver targetedDriver) {
 		return targetedDriver.getNotifications();
 	}
 
@@ -57,14 +56,12 @@ public class DriverListRepo implements DriverRepository{
 	}
 
 	@Override
-	public List<FavoriteArea> getFavoriteAreas(String username) {
-		Driver targetedDriver = this.getDriver(username);		//get obj inside the repo
+	public List<FavoriteArea> getFavoriteAreas(Driver targetedDriver) {
 		return targetedDriver.getFavoriteAreas();
 	}
 
 	@Override
-	public List<Ride> getavaliableRides(String username) {
-		Driver targetedDriver = this.getDriver(username);		//get obj inside the repo
+	public List<Ride> getavaliableRides(Driver targetedDriver) {
 		return targetedDriver.getAvaliableRides();
 	}
 

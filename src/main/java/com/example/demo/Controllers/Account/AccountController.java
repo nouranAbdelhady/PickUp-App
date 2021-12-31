@@ -32,15 +32,19 @@ public class AccountController {
     
     @RequestMapping("/login")
     //param section in postman
-    public boolean login(@RequestParam String username, @RequestParam String password) {
+    public String login(@RequestParam String username, @RequestParam String password) {
         IAccount loggedInAccount = accountService.login(username,password);
-        if(loggedInAccount!=null) {
-        	AccountService.currentlyLoggedIn = loggedInAccount;
-        	return true;
-        }
-        return false;
+        
     	//System.out.println("Username: "+username);
     	//System.out.println("Password: "+password);
+        
+        if( loggedInAccount!=null ) {
+        	AccountService.currentlyLoggedIn = loggedInAccount;
+        	return "Login successful";
+        }
+        else {
+        	return "Error: Invalid account details entered";
+        }   
     }
     
 }

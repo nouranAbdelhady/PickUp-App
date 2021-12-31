@@ -61,8 +61,8 @@ public class RideListRepo implements RideRepository {
             if (ride.getRideId() == toUpdate.getRideId()) {
                 ride.getOffers().add(newOffer);
                 
-                Notification newNotification = new Notification();
-                String Message="Driver with username :"+newOffer.getSuggestedBy().getUsername()+" offered price: "+newOffer.getPrice();
+                Notification newNotification = new Notification("Driver with username:"+newOffer.getSuggestedBy().getUsername()+" offered price: "+newOffer.getPrice());
+                String Message="Driver with username:"+newOffer.getSuggestedBy().getUsername()+" offered price: "+newOffer.getPrice();
                 
                 newNotification.setMessage(Message);
                 toUpdate.subscribePassenger(toUpdate.getRequestedBy());

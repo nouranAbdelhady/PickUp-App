@@ -30,7 +30,7 @@ public class DriverDatabaseRepo implements DriverRepository{
 	}
 
 	@Override
-	public List<Notification> getNotifications(String username) {
+	public List<Notification> getNotifications(Driver targetedDriver) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -49,14 +49,14 @@ public class DriverDatabaseRepo implements DriverRepository{
 	}
 
 	@Override
-	public List<FavoriteArea> getFavoriteAreas(String username) {
+	public List<FavoriteArea> getFavoriteAreas(Driver targetedDriver) {
 		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Ride> getavaliableRides(String username) {
+	public List<Ride> getavaliableRides(Driver targetedDriver) {
 		// TODO Auto-generated method stub
 		return null;
 	}

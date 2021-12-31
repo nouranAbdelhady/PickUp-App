@@ -29,8 +29,13 @@ public class DriverController {
     }
     
     @PostMapping("/register/driver")
-    public boolean add(@RequestBody Driver newDriver) {
-        return driverService.add(newDriver);
+    public String add(@RequestBody Driver newDriver) {
+        if( driverService.add(newDriver) ) {
+        	return "New driver successfully registered";
+        }
+        else {
+        	return "Error: registration not successful";
+        }
     }
 
     @GetMapping("/drivers")
@@ -45,22 +50,46 @@ public class DriverController {
     
     @GetMapping("/drivers/{username}/favoriteAreas")
     public List<FavoriteArea> getFavoriteAreas(@PathVariable String username) {
-        return driverService.getFavoriteAreas(username);
+    	Driver targetedDriver = driverService.getDriver(username);
+    	if(targetedDriver!=null && targetedDriver.getIsLoggedIn()) {
+    		return driverService.getFavoriteAreas(targetedDriver);
+    	}
+    	else {
+    		return null;		//driver not logged in
+    	}
     }
     
     @GetMapping("/drivers/{username}/avaliableRides")
     public List<Ride> getavaliableRides(@PathVariable String username) {
-        return driverService.getavaliableRides(username);
+    	Driver targetedDriver = driverService.getDriver(username);
+    	if(targetedDriver!=null && targetedDriver.getIsLoggedIn()) {
+    		return driverService.getavaliableRides(targetedDriver);
+    	}
+    	else {
+    		return null;		//driver not logged in
+    	}
+        
     }
     
     @DeleteMapping("delete/driver/{username}")
-    public boolean delete(@PathVariable String username) {
-        return (driverService.delete(username) && accountService.delete(username));
+    public String delete(@PathVariable String username) {
+    	if( driverService.delete(username) && accountService.delete(username) ) {
+        	return "Driver with username:"+username+" successfully deleted.";
+        }
+        else {
+        	return "Error: deletion not successful";
+        }    	
     }
     
     @GetMapping("/drivers/{username}/notifications")
     public List<Notification> getNotifications(@PathVariable String username) {
-        return driverService.getNotifications(username);
+    	Driver targetedDriver = driverService.getDriver(username);
+    	if(targetedDriver!=null && targetedDriver.getIsLoggedIn()) {
+    		return driverService.getNotifications(targetedDriver);
+    	}
+    	else {
+    		return null;		//driver not logged in
+    	}
     }
         
 }

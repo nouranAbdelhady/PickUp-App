@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,11 +31,18 @@ public class OfferController {
     }
     
     @PostMapping("/drivers/{username}/avaliableRides/{rideId}/add/offer")
-    public boolean updateRide(@PathVariable int rideId,@PathVariable String username, @RequestBody Offer newOffer) {
+    public String updateRide(@PathVariable int rideId,@PathVariable String username, @RequestBody Offer newOffer) {
     	Ride toUpdate =  rideService.get(rideId);
     	Driver suggestedBy = driverService.getDriver(username);
-    	newOffer.setSuggestedBy(suggestedBy);
-        return rideService.update(toUpdate,newOffer);
+    	
+        if( toUpdate!=null && (suggestedBy.getIsVerified() && suggestedBy!=null) ) {
+        	newOffer.setSuggestedBy(suggestedBy);
+            rideService.update(toUpdate,newOffer);
+            return "New offer successfully added to ride with id:"+rideId;
+        }
+        else {
+        	return "Error: Invalid parameter provided OR driver is not verified yet";
+        }
     }
     
     @GetMapping("/rides/{rideId}/offers")
@@ -59,8 +68,24 @@ public class OfferController {
     }
     
     @GetMapping("/passengers/{username}/requestedRide/offers/{offerId}")
-    public Offer getSingleOfferForRide(@PathVariable String username , @PathVariable int offerId) {
+    public Offer getSingleOfferForRide(@PathVariable String username, @PathVariable int offerId) {
     	Ride targetedRide = passengerService.getRequestedRide(username);
     	return rideService.getOffer(targetedRide.getRideId(),offerId);
+    }
+    
+    //enter offer id we want to accept
+    @RequestMapping("/passengers/{username}/requestedRide/offers")
+    public boolean acceptOffer(@PathVariable String username, @RequestParam int offerChoice) {
+    	System.out.println("Accepted offer is with id: "+ offerChoice);
+    	Ride targetedRide = passengerService.getRequestedRide(username);
+    	Offer targetedOffer = rideService.getOffer(targetedRide.getRideId(),offerChoice);
+    	
+    	//services to invoke:
+    	
+    	//targetedOffer isAccepted=true
+    	//offers 3ala el targetdRide should only have THIS offer
+    	//targtedRide isActive=true
+    	
+        return true;
     }
 }

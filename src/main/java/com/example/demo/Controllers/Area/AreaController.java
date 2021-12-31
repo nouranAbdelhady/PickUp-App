@@ -39,11 +39,17 @@ public class AreaController {
     }
     
     @PostMapping("/drivers/{username}/new/favoriteArea")
-    public boolean add(@PathVariable String username, @RequestBody FavoriteArea newArea) {
+    public String add(@PathVariable String username, @RequestBody FavoriteArea newArea) {
         Driver targetedDriver = driverService.getDriver(username);
-        if(targetedDriver!=null) {
+        
+        if( targetedDriver!=null && targetedDriver.getIsLoggedIn() ) {
         	targetedDriver.addFavoriteAreas(newArea);
+        	areaService.update(newArea, targetedDriver);
+        	return "New favorite area successfully added";
         }
-        return areaService.update(newArea, targetedDriver);
+        else {
+        	return "Error: Invalid username provided OR driver is not verified/logged in yet";
+        }
+       
     }
 }
