@@ -49,7 +49,7 @@ public class OfferController {
     @GetMapping("/passengers/{username}/requestedRide/offers")
     public List<Offer> getOffersForRide(@PathVariable String username) {
     	Ride targetedRide = passengerService.getRequestedRide(username);
-    	System.out.println("Ride ID:"+targetedRide.getRideId());
+    	//System.out.println("Ride ID:"+targetedRide.getRideId());
     	return rideService.getOffers(targetedRide.getRideId());
     }
     

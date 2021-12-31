@@ -54,11 +54,20 @@ public class RideListRepo implements RideRepository {
         return false;
     }
 
-	@Override
+    //changed
+    @Override
 	public boolean update(Ride toUpdate, Offer newOffer) {
 		for (Ride ride : allRides) {
             if (ride.getRideId() == toUpdate.getRideId()) {
                 ride.getOffers().add(newOffer);
+                
+                Notification newNotification = new Notification();
+                String Message="Driver with UserName :"+newOffer.getSuggestedBy().getUsername()+" offered a price "+newOffer.getPrice();
+                
+                newNotification.setMessage(Message);
+                toUpdate.subscribePassenger(toUpdate.getRequestedBy());
+                toUpdate.notifyObservers(newNotification);
+				//toUpdate.getRequestedBy().getNotified(newNotification);
                 return true;
             }
         }

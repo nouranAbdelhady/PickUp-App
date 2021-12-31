@@ -3,9 +3,10 @@ package com.example.demo.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.Extra.Subject2;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Ride {
+public class Ride implements Subject2{
     private static int counter = 0;
     private int rideId;
     private String source;
@@ -16,6 +17,10 @@ public class Ride {
     
     @JsonIgnore
     private List<Offer> offers;
+    
+    //Observer2
+    @JsonIgnore
+    List<Passenger> Sub =new ArrayList<Passenger>();
     
     /*
     private String title;
@@ -79,5 +84,21 @@ public class Ride {
 
 	public void setRideId(int rideId) {
 		this.rideId = rideId;
+	}
+
+	@Override
+	public boolean subscribePassenger(Passenger newSubscription) {
+		 Sub.add(newSubscription);
+		return  true ;
+	}
+
+	@Override
+	public void notifyObservers(Notification newNotification) {
+		for ( Passenger p1 :  Sub) 
+		{ 
+			if(p1!=null) {
+				 p1.getNotified(newNotification);
+			}   
+		}		
 	}
 }
