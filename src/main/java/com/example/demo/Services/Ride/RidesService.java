@@ -5,12 +5,38 @@ import java.util.List;
 import com.example.demo.Entities.*;
 import com.example.demo.Repositories.Ride.RideListRepo;
 import com.example.demo.Repositories.Ride.RideRepository;
+import com.example.demo.Services.Area.AreaService;
+import com.example.demo.Services.Area.IAreaService;
 
-public class RidesService implements IRidesService {
+public class RidesService implements IRidesService{
     private RideRepository rideRep = new RideListRepo();
+    private IAreaService areaService;
+    
+    public RidesService() {
+    	areaService = new AreaService();
+    }
 
     @Override
     public boolean add(Ride newRide) {
+    	
+    	String sourceRide = newRide.getSource();
+    	System.out.println("Looking for: "+sourceRide);
+    	FavoriteArea targetedArea = areaService.get(sourceRide);
+    	
+    	if(targetedArea!=null) {
+    		System.out.println("Targeted area found "+targetedArea.getAreaName());
+    	}
+    	else{
+    		System.out.println("Targeted area not found");
+    	}
+
+		Notification newNotification = new Notification("A new ride with id:" + newRide.getRideId()
+				+ " is requested.");
+		
+		if(targetedArea!=null) {
+			targetedArea.notifyObservers(newNotification);
+		}
+		
         return rideRep.add(newRide);
     }
 

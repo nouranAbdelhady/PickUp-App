@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AreaController {
     private IAreaService areaService;
-    private IDriverService driverService;
+    private IDriverService driverService; 
     
     public AreaController() {
     	areaService = new AreaService();
@@ -26,6 +26,11 @@ public class AreaController {
     @GetMapping("/areas")
     public List<FavoriteArea> getAll() {
         return areaService.getAll();
+    }
+    
+    @GetMapping("/areas/{name}/drivers")
+    public List<Driver> getDrivers(@PathVariable String name) {
+        return areaService.getDrivers(name);
     }
 
     @GetMapping("/areas/{name}")

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.example.demo.Extra.Observer1;
 
-public class Driver extends IAccount implements Observer1{
+public class Driver extends IAccount implements Observer1 {
 		
 	protected int license;
 	protected int nationalId;

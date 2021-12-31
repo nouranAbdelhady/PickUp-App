@@ -12,5 +12,6 @@ public interface FavoriteAreaRepository {
     List<FavoriteArea> getAll();
     boolean delete(String name);
 	boolean update(FavoriteArea targetedArea, Driver newSub);
+	List<Driver> getDrivers(String name);
   	
 }

@@ -51,7 +51,17 @@ public class FavoriteAreaListRepo implements FavoriteAreaRepository {
             }
         }
     	//area doesn't exist
+    	{
+    		//new subscriber
+    		targetedArea.subscribeDriver(newSub);
+    	}
         return this.add(targetedArea);
     }
+
+	@Override
+	public List<Driver> getDrivers(String name) {
+		FavoriteArea targetedArea = this.get(name);
+		return targetedArea.getDriversWithFavoriteArea();
+	}
   
 }

@@ -28,4 +28,10 @@ public class AreaService implements IAreaService {
 	public boolean update(FavoriteArea toUpdate, Driver newDrver) {
 		return areaRepo.update(toUpdate, newDrver);
 	}
+
+	@Override
+	public List<Driver> getDrivers(String name) {
+		
+		return areaRepo.getDrivers(name);
+	}
 }

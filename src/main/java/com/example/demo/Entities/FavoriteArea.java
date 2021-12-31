@@ -4,13 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.Extra.Subject1;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class FavoriteArea implements Subject1{
 	private String areaName;
 	
 	//Observer1/Subject1 Pattern
+	@JsonIgnore
 	List<Driver> driversWithFavoriteArea;
 
+	public List<Driver> getDriversWithFavoriteArea() {
+		return driversWithFavoriteArea;
+	}
+	public void setDriversWithFavoriteArea(List<Driver> driversWithFavoriteArea) {
+		this.driversWithFavoriteArea = driversWithFavoriteArea;
+	}
 	public String getAreaName() {
 		return areaName;
 	}

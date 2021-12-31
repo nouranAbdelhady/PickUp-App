@@ -10,4 +10,5 @@ public interface IAreaService {
     public FavoriteArea get(String name);
     public List<FavoriteArea> getAll();
     public boolean update(FavoriteArea toUpdate , Driver newDrver);
+	public List<Driver> getDrivers(String name);
 }

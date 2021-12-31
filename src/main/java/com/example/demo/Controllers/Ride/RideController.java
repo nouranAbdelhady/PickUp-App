@@ -5,6 +5,8 @@ import java.util.List;
 import com.example.demo.Entities.*;
 import com.example.demo.Services.Account.IPassengerService;
 import com.example.demo.Services.Account.PassengerService;
+import com.example.demo.Services.Area.AreaService;
+import com.example.demo.Services.Area.IAreaService;
 import com.example.demo.Services.Ride.IRidesService;
 import com.example.demo.Services.Ride.RidesService;
 
@@ -19,9 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class RideController {
     private IRidesService rideService;
     private IPassengerService passengerService;
+    public IAreaService areaService;
     
     public RideController() {
     	rideService = new RidesService();
+    	areaService = new AreaService();
     	passengerService = new PassengerService();
     }
 
