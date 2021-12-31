@@ -1,0 +1,44 @@
+package com.example.demo.Repositories.Account;
+
+import java.util.List;
+
+import com.example.demo.Entities.Driver;
+import com.example.demo.Entities.Notification;
+
+public class DriverDatabaseRepo implements DriverRepository{
+
+	//databse obj
+	
+	@Override
+	public List<Driver> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Driver getDriver(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addDriver(Driver newDriver) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Notification> getNotifications(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteDriver(String username) {
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}
