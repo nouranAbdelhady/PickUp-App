@@ -47,7 +47,12 @@ public class RideController {
         return rideService.get(id);
     }
     
-    @GetMapping("/rides/{rideId}/offer/{offerId}")
+    @GetMapping("/rides/{rideId}/offers")
+    public List<Offer> getOffers(@PathVariable int rideId) {
+        return rideService.getOffers(rideId);
+    }
+    
+    @GetMapping("/rides/{rideId}/offers/{offerId}")
     public Offer getOffer(@PathVariable int rideId , @PathVariable int offerId) {
         return rideService.getOffer(rideId,offerId);
     }

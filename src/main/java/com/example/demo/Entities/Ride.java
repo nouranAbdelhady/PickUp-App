@@ -3,12 +3,18 @@ package com.example.demo.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Ride {
     private static int counter = 0;
     private int rideId;
     private String source;
     private String destination;
+    
+    @JsonIgnore
     private Passenger requestedBy;
+    
+    @JsonIgnore
     private List<Offer> offers;
     
     /*

@@ -3,6 +3,7 @@ package com.example.demo.Controllers.Account;
 import com.example.demo.Entities.Driver;
 import com.example.demo.Entities.FavoriteArea;
 import com.example.demo.Entities.Notification;
+import com.example.demo.Entities.Ride;
 import com.example.demo.Services.Account.AccountService;
 import com.example.demo.Services.Account.DriverService;
 import com.example.demo.Services.Account.IAccountService;
@@ -45,6 +46,11 @@ public class DriverController {
     @GetMapping("/drivers/{username}/favoriteAreas")
     public List<FavoriteArea> getFavoriteAreas(@PathVariable String username) {
         return driverService.getFavoriteAreas(username);
+    }
+    
+    @GetMapping("/drivers/{username}/avaliableRides")
+    public List<Ride> getavaliableRides(@PathVariable String username) {
+        return driverService.getavaliableRides(username);
     }
     
     @DeleteMapping("delete/driver/{username}")

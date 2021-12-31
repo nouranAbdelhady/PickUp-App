@@ -65,4 +65,10 @@ public class RideListRepo implements RideRepository {
 		return false;
 	}
 
+	@Override
+	public List<Offer> getOffers(int rideId) {
+		Ride targetedRide = this.get(rideId);
+		return targetedRide.getOffers();
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.Entities.Driver;
 import com.example.demo.Entities.FavoriteArea;
 import com.example.demo.Entities.Notification;
+import com.example.demo.Entities.Ride;
 
 public class DriverDatabaseRepo implements DriverRepository{
 
@@ -52,6 +53,12 @@ public class DriverDatabaseRepo implements DriverRepository{
 		return null;
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Ride> getavaliableRides(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

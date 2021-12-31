@@ -3,6 +3,8 @@ package com.example.demo.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class IAccount {
 	
 	protected String type;
@@ -13,6 +15,7 @@ public abstract class IAccount {
 	private int mobileNumber;
 	protected Boolean isLoggedIn;
 	
+	@JsonIgnore
 	private List<Notification> notifications;
 	
 	IAccount(){	

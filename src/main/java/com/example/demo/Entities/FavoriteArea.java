@@ -38,10 +38,13 @@ public class FavoriteArea implements Subject1{
 		return driversWithFavoriteArea.add(newSubscription);
 	}
 	@Override
-	public void notifyObservers(Notification newNotification) {
+	public void notifyObservers(Notification newNotification, Ride newRide) {
 		for (Driver singleDriver : driversWithFavoriteArea) 
 		{ 
-		    singleDriver.getNotified(newNotification);
+			if(singleDriver!=null) {
+				singleDriver.getNotified(newNotification);
+			    singleDriver.getAvaliableRides().add(newRide);
+			}   
 		}
 	}
 

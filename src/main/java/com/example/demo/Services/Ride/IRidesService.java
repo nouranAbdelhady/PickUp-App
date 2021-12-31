@@ -12,4 +12,5 @@ public interface IRidesService {
     public boolean delete(int id);
     public boolean update(Ride toUpdate , Offer newOffer);
 	public Offer getOffer(int rideId, int offerId);
+	public List<Offer> getOffers(int rideId);
 }

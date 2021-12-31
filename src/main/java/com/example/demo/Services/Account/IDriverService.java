@@ -12,4 +12,5 @@ public interface IDriverService {
 	public boolean delete(String username);	
 	public boolean update(Driver toUpdate , FavoriteArea newArea) ;
 	public List<FavoriteArea> getFavoriteAreas(String username);
+	public List<Ride> getavaliableRides(String username);
 }

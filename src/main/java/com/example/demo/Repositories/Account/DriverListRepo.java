@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.demo.Entities.Driver;
 import com.example.demo.Entities.FavoriteArea;
 import com.example.demo.Entities.Notification;
+import com.example.demo.Entities.Ride;
 
 public class DriverListRepo implements DriverRepository{
 	
@@ -58,6 +59,12 @@ public class DriverListRepo implements DriverRepository{
 	public List<FavoriteArea> getFavoriteAreas(String username) {
 		Driver targetedDriver = this.getDriver(username);		//get obj inside the repo
 		return targetedDriver.getFavoriteAreas();
+	}
+
+	@Override
+	public List<Ride> getavaliableRides(String username) {
+		Driver targetedDriver = this.getDriver(username);		//get obj inside the repo
+		return targetedDriver.getAvaliableRides();
 	}
 	
 }

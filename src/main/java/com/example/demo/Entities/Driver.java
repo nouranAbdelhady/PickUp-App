@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.Extra.Observer1;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Driver extends IAccount implements Observer1 {
 		
 	protected int license;
 	protected int nationalId;
-	protected List<FavoriteArea> favoriteAreas;
+	@JsonIgnore
+	protected List<FavoriteArea> favoriteAreas; 
+	@JsonIgnore
 	protected List<Ride> avaliableRides;
 	protected double balance;
 
@@ -25,6 +28,7 @@ public class Driver extends IAccount implements Observer1 {
 		this.favoriteAreas = new ArrayList<FavoriteArea>();
 		this.setNotifications( new ArrayList<Notification>() );
 		this.type = "Driver";
+		this.avaliableRides = new ArrayList<Ride>();
 	}
 
 	public Driver(String username, String password , String email){
@@ -36,6 +40,7 @@ public class Driver extends IAccount implements Observer1 {
 		this.type = "Driver";
 		this.isLoggedIn = false;
 		this.isVerified = false;
+		this.avaliableRides = new ArrayList<Ride>();
 	}
 
 	Driver(){
@@ -44,6 +49,7 @@ public class Driver extends IAccount implements Observer1 {
 		this.type = "Driver";
 		this.isLoggedIn = false;
 		this.isVerified = false;
+		this.avaliableRides = new ArrayList<Ride>();
 	}
 
 	@Override

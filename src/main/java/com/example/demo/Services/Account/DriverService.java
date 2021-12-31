@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.Entities.Driver;
 import com.example.demo.Entities.FavoriteArea;
 import com.example.demo.Entities.Notification;
+import com.example.demo.Entities.Ride;
 import com.example.demo.Repositories.Account.DriverListRepo;
 import com.example.demo.Repositories.Account.DriverRepository;
 
@@ -48,6 +49,11 @@ public class DriverService implements IDriverService {
 	@Override
 	public List<FavoriteArea> getFavoriteAreas(String username) {
 		return repository.getFavoriteAreas(username);
+	}
+
+	@Override
+	public List<Ride> getavaliableRides(String username) {
+		return repository.getavaliableRides(username);
 	}
 	
 }

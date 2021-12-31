@@ -42,6 +42,12 @@ public class RideDatabaseRepo implements RideRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Offer> getOffers(int rideId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 		
 
 }

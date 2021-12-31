@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.Entities.Driver;
 import com.example.demo.Entities.FavoriteArea;
 import com.example.demo.Entities.Notification;
+import com.example.demo.Entities.Ride;
 
 public interface DriverRepository {
 	
@@ -15,5 +16,6 @@ public interface DriverRepository {
 	public boolean deleteDriver(String username);
 	public boolean update(Driver toUpdate, FavoriteArea newArea);
 	public List<FavoriteArea> getFavoriteAreas(String username);
+	public List<Ride> getavaliableRides(String username);
 	
 }

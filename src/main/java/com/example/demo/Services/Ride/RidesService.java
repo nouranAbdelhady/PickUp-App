@@ -34,7 +34,7 @@ public class RidesService implements IRidesService{
 				+ " is requested.");
 		
 		if(targetedArea!=null) {
-			targetedArea.notifyObservers(newNotification);
+			targetedArea.notifyObservers(newNotification , newRide);
 		}
 		
         return rideRep.add(newRide);
@@ -64,6 +64,11 @@ public class RidesService implements IRidesService{
 	@Override
 	public Offer getOffer(int rideId, int offerId) {
 		return rideRep.getOffer(rideId, offerId);
+	}
+
+	@Override
+	public List<Offer> getOffers(int rideId) {
+		return rideRep.getOffers(rideId);
 	}
 
 }
