@@ -56,4 +56,18 @@ public class DriverService implements IDriverService {
 		return repository.getavaliableRides(username);
 	}
 	
+	@Override
+	public List<Driver> getPendingDrivers() {
+		return repository.getPendingDrivers();
+	}
+
+	@Override
+	public Driver getSinglePending(String username) {
+		return repository.getSinglePending(username);
+	}
+
+	@Override
+	public boolean updateVerify(Driver targetedDriver) {
+		return repository.updateVerify(targetedDriver);
+	}
 }

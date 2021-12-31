@@ -10,6 +10,17 @@ public class Passenger extends IAccount{
 	@JsonIgnore
 	protected List<Ride> previousRides;
 	
+	@JsonIgnore
+	protected Ride requestedRide = null;
+	
+	public Ride getRequestedRide() {
+		return requestedRide;
+	}
+
+	public void setRequestedRide(Ride requestedRide) {
+		this.requestedRide = requestedRide;
+	}
+
 	public List<Ride> getPreviousRides() {
 		return previousRides;
 	}

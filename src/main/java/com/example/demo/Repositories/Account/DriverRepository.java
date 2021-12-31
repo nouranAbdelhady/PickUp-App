@@ -17,5 +17,8 @@ public interface DriverRepository {
 	public boolean update(Driver toUpdate, FavoriteArea newArea);
 	public List<FavoriteArea> getFavoriteAreas(String username);
 	public List<Ride> getavaliableRides(String username);
+	public List<Driver> getPendingDrivers();
+	public Driver getSinglePending(String username);
+	public boolean updateVerify(Driver targetedDriver);
 	
 }
