@@ -1,4 +1,6 @@
-package com.example.demo.Entities;
+package com.example.demo.Entities.Ride;
+
+import com.example.demo.Entities.Account.Driver;
 
 public class Offer {
 	private static int counter = 0;

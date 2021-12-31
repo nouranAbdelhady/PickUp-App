@@ -1,8 +1,9 @@
-package com.example.demo.Entities;
+package com.example.demo.Entities.Account;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.Entities.Ride.Ride;
 import com.example.demo.Extra.Subject1;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

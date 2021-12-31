@@ -3,9 +3,11 @@ package com.example.demo.Controllers.Ride;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Account.Passenger;
 import com.example.demo.Entities.Distance.GoogleMapsCalculator;
 import com.example.demo.Entities.Distance.HarvesineCalculator;
 import com.example.demo.Entities.Distance.IDistanceCalculator;
+import com.example.demo.Entities.Ride.Ride;
 import com.example.demo.Services.Account.IPassengerService;
 import com.example.demo.Services.Account.PassengerService;
 import com.example.demo.Services.Area.AreaService;

@@ -1,9 +1,9 @@
 package com.example.demo.Controllers.Account;
 
-import com.example.demo.Entities.Driver;
-import com.example.demo.Entities.FavoriteArea;
-import com.example.demo.Entities.Notification;
-import com.example.demo.Entities.Ride;
+import com.example.demo.Entities.Account.Driver;
+import com.example.demo.Entities.Account.FavoriteArea;
+import com.example.demo.Entities.Account.Notification;
+import com.example.demo.Entities.Ride.Ride;
 import com.example.demo.Services.Account.AccountService;
 import com.example.demo.Services.Account.DriverService;
 import com.example.demo.Services.Account.IAccountService;

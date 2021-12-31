@@ -1,9 +1,9 @@
 package com.example.demo.Extra;
 
-import com.example.demo.Entities.IAccount;
-import com.example.demo.Entities.Notification;
-import com.example.demo.Entities.Passenger;
-import com.example.demo.Entities.Ride;
+import com.example.demo.Entities.Account.IAccount;
+import com.example.demo.Entities.Account.Notification;
+import com.example.demo.Entities.Account.Passenger;
+import com.example.demo.Entities.Ride.Ride;
 
 public interface Subject2 {
 	public boolean subscribePassenger( Passenger newSubscription );

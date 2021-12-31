@@ -3,6 +3,10 @@ package com.example.demo.Services.Ride;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Account.FavoriteArea;
+import com.example.demo.Entities.Account.Notification;
+import com.example.demo.Entities.Ride.Offer;
+import com.example.demo.Entities.Ride.Ride;
 import com.example.demo.Repositories.Ride.RideListRepo;
 import com.example.demo.Repositories.Ride.RideRepository;
 import com.example.demo.Services.Area.AreaService;

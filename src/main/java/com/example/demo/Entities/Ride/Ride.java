@@ -1,8 +1,12 @@
-package com.example.demo.Entities;
+package com.example.demo.Entities.Ride;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.Entities.Account.Driver;
+import com.example.demo.Entities.Account.IAccount;
+import com.example.demo.Entities.Account.Notification;
+import com.example.demo.Entities.Account.Passenger;
 import com.example.demo.Extra.Subject2;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,12 +35,13 @@ public class Ride implements Subject2{
     private boolean isActive = false;
     @JsonIgnore
     private Driver currentDriver = null;
+    @JsonIgnore
+    private Rate rate;
     
     /*
     private String title;
     private String description;
     private double cost;
-    private int rate;   
     
     */
 
@@ -126,7 +131,7 @@ public class Ride implements Subject2{
 				}
 				else {
 					//passenger
-					Notification newNotificationForPassenger = new Notification("Ride started - Driver name:"+accepted.getCurrentDriver().getUsername()+" - Price:"+accepted.getOffers().get(0).getPrice());
+					Notification newNotificationForPassenger = new Notification("Ride started - Driver name: "+accepted.getCurrentDriver().getUsername()+" - Price:"+accepted.getOffers().get(0).getPrice());
 	                obj.getNotified(newNotificationForPassenger);
 				}
 				
@@ -172,7 +177,13 @@ public class Ride implements Subject2{
 	public void subscribeStart(IAccount newSubscription) {
 		startRideSub.add(newSubscription);
 	}
-	
-	
-	
+
+	public Rate getRate() {
+		return rate;
+	}
+
+	public void setRate(Rate rate) {
+		this.rate = rate;
+	}
+		
 }

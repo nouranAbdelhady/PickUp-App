@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Account.Notification;
+import com.example.demo.Entities.Ride.Offer;
+import com.example.demo.Entities.Ride.Ride;
 
 public class RideListRepo implements RideRepository {
 

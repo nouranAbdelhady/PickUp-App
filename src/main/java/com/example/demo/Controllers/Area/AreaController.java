@@ -3,6 +3,8 @@ package com.example.demo.Controllers.Area;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Account.Driver;
+import com.example.demo.Entities.Account.FavoriteArea;
 import com.example.demo.Services.Account.DriverService;
 import com.example.demo.Services.Account.IDriverService;
 import com.example.demo.Services.Area.AreaService;

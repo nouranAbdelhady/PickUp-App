@@ -2,9 +2,9 @@ package com.example.demo.Repositories.Account;
 
 import java.util.List;
 
-import com.example.demo.Entities.Notification;
-import com.example.demo.Entities.Passenger;
-import com.example.demo.Entities.Ride;
+import com.example.demo.Entities.Account.Notification;
+import com.example.demo.Entities.Account.Passenger;
+import com.example.demo.Entities.Ride.Ride;
 
 public class PassengerDatabaseRepo implements PassengerRepository{
 

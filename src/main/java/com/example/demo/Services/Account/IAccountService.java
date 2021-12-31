@@ -3,6 +3,7 @@ package com.example.demo.Services.Account;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Account.IAccount;
 
 public interface IAccountService {
 	

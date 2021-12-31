@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Account.Driver;
+import com.example.demo.Entities.Account.FavoriteArea;
 
 public class FavoriteAreaListRepo implements FavoriteAreaRepository {
 

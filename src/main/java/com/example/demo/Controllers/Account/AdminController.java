@@ -1,6 +1,6 @@
 package com.example.demo.Controllers.Account;
 
-import com.example.demo.Entities.Driver;
+import com.example.demo.Entities.Account.Driver;
 import com.example.demo.Services.Account.DriverService;
 import com.example.demo.Services.Account.IDriverService;
 

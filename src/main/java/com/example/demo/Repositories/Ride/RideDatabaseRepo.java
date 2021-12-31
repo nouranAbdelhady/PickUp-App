@@ -2,6 +2,8 @@ package com.example.demo.Repositories.Ride;
 
 import java.util.List;
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Ride.Offer;
+import com.example.demo.Entities.Ride.Ride;
 
 public class RideDatabaseRepo implements RideRepository {
 

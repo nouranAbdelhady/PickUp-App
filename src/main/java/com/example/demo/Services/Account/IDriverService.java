@@ -3,6 +3,10 @@ package com.example.demo.Services.Account;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Account.Driver;
+import com.example.demo.Entities.Account.FavoriteArea;
+import com.example.demo.Entities.Account.Notification;
+import com.example.demo.Entities.Ride.Ride;
 
 public interface IDriverService {
     public List<Driver> getAll();

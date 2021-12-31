@@ -2,8 +2,8 @@ package com.example.demo.Services.Ride;
 
 import java.util.List;
 
-import com.example.demo.Entities.Offer;
-import com.example.demo.Entities.Ride;
+import com.example.demo.Entities.Ride.Offer;
+import com.example.demo.Entities.Ride.Ride;
 
 public interface IRidesService {
     public boolean add(Ride newRide);

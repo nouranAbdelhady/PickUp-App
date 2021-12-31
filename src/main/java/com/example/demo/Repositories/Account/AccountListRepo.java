@@ -2,7 +2,8 @@ package com.example.demo.Repositories.Account;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.example.demo.Entities.IAccount;
+
+import com.example.demo.Entities.Account.IAccount;
 
 public class AccountListRepo implements AccountRepository{
 

@@ -2,10 +2,10 @@ package com.example.demo.Repositories.Account;
 
 import java.util.List;
 
-import com.example.demo.Entities.Driver;
-import com.example.demo.Entities.FavoriteArea;
-import com.example.demo.Entities.Notification;
-import com.example.demo.Entities.Ride;
+import com.example.demo.Entities.Account.Driver;
+import com.example.demo.Entities.Account.FavoriteArea;
+import com.example.demo.Entities.Account.Notification;
+import com.example.demo.Entities.Ride.Ride;
 
 public class DriverDatabaseRepo implements DriverRepository{
 

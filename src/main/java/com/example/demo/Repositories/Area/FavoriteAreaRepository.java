@@ -2,8 +2,8 @@ package com.example.demo.Repositories.Area;
 
 import java.util.List;
 
-import com.example.demo.Entities.Driver;
-import com.example.demo.Entities.FavoriteArea;
+import com.example.demo.Entities.Account.Driver;
+import com.example.demo.Entities.Account.FavoriteArea;
 
 public interface FavoriteAreaRepository {
 
