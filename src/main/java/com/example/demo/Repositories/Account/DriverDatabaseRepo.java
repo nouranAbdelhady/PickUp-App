@@ -60,6 +60,24 @@ public class DriverDatabaseRepo implements DriverRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Driver> getPendingDrivers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Driver getSinglePending(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateVerify(Driver targetedDriver) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 }

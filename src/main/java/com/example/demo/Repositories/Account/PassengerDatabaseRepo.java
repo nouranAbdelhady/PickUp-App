@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.Entities.Notification;
 import com.example.demo.Entities.Passenger;
+import com.example.demo.Entities.Ride;
 
 public class PassengerDatabaseRepo implements PassengerRepository{
 
@@ -37,6 +38,12 @@ public class PassengerDatabaseRepo implements PassengerRepository{
 	public boolean deletePassenger(String username) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Ride getRequestedRide(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 	
 	

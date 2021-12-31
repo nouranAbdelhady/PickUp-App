@@ -9,5 +9,6 @@ public interface IPassengerService {
 	public Passenger getPassenger(String username);
 	public boolean add(Passenger newPassenger);
 	public List<Notification> getNotifications(String username);
-	public boolean delete(String username);	
+	public boolean delete(String username);
+	public Ride getRequestedRide(String username);	
 }

@@ -37,6 +37,9 @@ public class RidesService implements IRidesService{
 			targetedArea.notifyObservers(newNotification , newRide);
 		}
 		
+		//add ride to passenger [requestedRide]
+		newRide.getRequestedBy().setRequestedRide(newRide);
+		
         return rideRep.add(newRide);
     }
 

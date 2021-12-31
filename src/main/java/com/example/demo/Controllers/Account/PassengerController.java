@@ -2,6 +2,7 @@ package com.example.demo.Controllers.Account;
 
 import com.example.demo.Entities.Notification;
 import com.example.demo.Entities.Passenger;
+import com.example.demo.Entities.Ride;
 import com.example.demo.Services.Account.AccountService;
 import com.example.demo.Services.Account.IAccountService;
 import com.example.demo.Services.Account.IPassengerService;
@@ -39,6 +40,11 @@ public class PassengerController {
     @GetMapping("/passengers/{username}")
     public Passenger getPassenger(@PathVariable String username) {
         return passengerService.getPassenger(username);
+    }
+    
+    @GetMapping("/passengers/{username}/requestedRide")
+    public Ride getRequestedRide(@PathVariable String username) {
+    	return passengerService.getRequestedRide(username);
     }
     
     @DeleteMapping("delete/passengers/{username}")

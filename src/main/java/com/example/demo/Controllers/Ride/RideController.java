@@ -34,6 +34,7 @@ public class RideController {
     public Boolean add(@PathVariable String username,@RequestBody Ride ride) {
     	Passenger requestedBy = passengerService.getPassenger(username);
     	ride.setRequestedBy(requestedBy);
+    	//ride.sub(requestedBy);
         return rideService.add(ride);
     }
 

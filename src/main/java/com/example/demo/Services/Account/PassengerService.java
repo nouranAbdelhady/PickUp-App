@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.Entities.Notification;
 import com.example.demo.Entities.Passenger;
+import com.example.demo.Entities.Ride;
 import com.example.demo.Repositories.Account.PassengerListRepo;
 import com.example.demo.Repositories.Account.PassengerRepository;
 
@@ -37,6 +38,11 @@ public class PassengerService implements IPassengerService {
 	@Override
 	public boolean delete(String username) {
 		return passengerRepo.deletePassenger(username);
+	}
+
+	@Override
+	public Ride getRequestedRide(String username) {
+		return passengerRepo.getRequestedRide(username);
 	}
 
 

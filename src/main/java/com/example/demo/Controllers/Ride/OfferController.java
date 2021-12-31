@@ -3,6 +3,8 @@ package com.example.demo.Controllers.Ride;
 import com.example.demo.Entities.*;
 import com.example.demo.Services.Account.DriverService;
 import com.example.demo.Services.Account.IDriverService;
+import com.example.demo.Services.Account.IPassengerService;
+import com.example.demo.Services.Account.PassengerService;
 import com.example.demo.Services.Ride.IRidesService;
 import com.example.demo.Services.Ride.RidesService;
 
@@ -18,10 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class OfferController {
     private IRidesService rideService;
     private IDriverService driverService;
+    private IPassengerService passengerService;
     
     public OfferController() {
     	rideService = new RidesService();
     	driverService = new DriverService();
+    	passengerService = new PassengerService();
     }
     
     @PostMapping("/drivers/{username}/avaliableRides/{rideId}/add/offer")
@@ -40,5 +44,18 @@ public class OfferController {
     @GetMapping("/rides/{rideId}/offers/{offerId}")
     public Offer getOffer(@PathVariable int rideId , @PathVariable int offerId) {
         return rideService.getOffer(rideId,offerId);
+    }
+    
+    @GetMapping("/passengers/{username}/requestedRide/offers")
+    public List<Offer> getOffersForRide(@PathVariable String username) {
+    	Ride targetedRide = passengerService.getRequestedRide(username);
+    	System.out.println("Ride ID:"+targetedRide.getRideId());
+    	return rideService.getOffers(targetedRide.getRideId());
+    }
+    
+    @GetMapping("/passengers/{username}/requestedRide/offers/{offerId}")
+    public Offer getSingleOfferForRide(@PathVariable String username , @PathVariable int offerId) {
+    	Ride targetedRide = passengerService.getRequestedRide(username);
+    	return rideService.getOffer(targetedRide.getRideId(),offerId);
     }
 }

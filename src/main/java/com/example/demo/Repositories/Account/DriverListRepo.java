@@ -11,6 +11,7 @@ import com.example.demo.Entities.Ride;
 public class DriverListRepo implements DriverRepository{
 	
 	public static List<Driver> allDrivers = new ArrayList<Driver>(); 
+	public static List<Driver> pendingDrivers; 
 	 
 	public List<Driver> getAll() {
 		return DriverListRepo.allDrivers;
@@ -65,6 +66,46 @@ public class DriverListRepo implements DriverRepository{
 	public List<Ride> getavaliableRides(String username) {
 		Driver targetedDriver = this.getDriver(username);		//get obj inside the repo
 		return targetedDriver.getAvaliableRides();
+	}
+
+	@Override
+	public List<Driver> getPendingDrivers() {
+		pendingDrivers = new ArrayList<Driver>();
+		for	(int i=0 ; i <allDrivers.size() ; i++) {
+			if(!allDrivers.get(i).getIsVerified()) {
+				pendingDrivers.add(allDrivers.get(i));
+			}
+		}
+		return pendingDrivers;
+	}
+
+	@Override
+	public Driver getSinglePending(String username) {
+		for	(int i=0 ; i <pendingDrivers.size() ; i++) {
+			if(pendingDrivers.get(i).getUsername().compareTo(username)==0) {
+				return pendingDrivers.get(i);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public boolean updateVerify(Driver targetedDriver) {
+		//remove from pending drivers list
+		for	(int i=0 ; i <pendingDrivers.size() ; i++) {
+			if(pendingDrivers.get(i).getUsername().compareTo(targetedDriver.getUsername())==0) {
+				pendingDrivers.remove(i);
+			}
+		}
+		
+		//change isVerified to true
+		for	(int i=0 ; i <allDrivers.size() ; i++) {
+			if(allDrivers.get(i).getUsername().compareTo(targetedDriver.getUsername()) == 0) {
+				allDrivers.get(i).setIsVerified(true);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

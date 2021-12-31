@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.demo.Entities.Notification;
 import com.example.demo.Entities.Passenger;
+import com.example.demo.Entities.Ride;
 
 public class PassengerListRepo implements PassengerRepository{
 	
@@ -49,6 +50,16 @@ public class PassengerListRepo implements PassengerRepository{
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public Ride getRequestedRide(String username) {
+		for	(int i=0 ; i <allPassengers.size() ; i++) {
+			if(allPassengers.get(i).getUsername().compareTo(username) == 0) {
+				return allPassengers.get(i).getRequestedRide();
+			}
+		}
+		return null;
 	}
 	
 }
