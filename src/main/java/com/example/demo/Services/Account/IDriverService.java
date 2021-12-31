@@ -10,4 +10,6 @@ public interface IDriverService {
 	public boolean add(Driver newDriver);
 	public List<Notification> getNotifications(String username);
 	public boolean delete(String username);	
+	public boolean update(Driver toUpdate , FavoriteArea newArea) ;
+	public List<FavoriteArea> getFavoriteAreas(String username);
 }

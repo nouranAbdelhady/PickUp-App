@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.Entities.Driver;
+import com.example.demo.Entities.FavoriteArea;
 import com.example.demo.Entities.Notification;
 
 public class DriverListRepo implements DriverRepository{
@@ -32,12 +33,8 @@ public class DriverListRepo implements DriverRepository{
 
 	@Override
 	public List<Notification> getNotifications(String username) {
-		for	(int i=0 ; i <allDrivers.size() ; i++) {
-			if(allDrivers.get(i).getUsername().compareTo(username) == 0) {
-				return allDrivers.get(i).getNotifications();
-			}
-		}
-		return null;
+		Driver targetedDriver = this.getDriver(username);		//get obj inside the repo
+		return targetedDriver.getNotifications();
 	}
 
 	@Override
@@ -50,6 +47,18 @@ public class DriverListRepo implements DriverRepository{
 		}
 		return false;
 		
+	}
+
+	@Override
+	public boolean update(Driver toUpdate, FavoriteArea newArea) {
+		toUpdate = this.getDriver(toUpdate.getUsername());		//get obj inside the repo
+		return toUpdate.addFavoriteAreas(newArea);
+	}
+
+	@Override
+	public List<FavoriteArea> getFavoriteAreas(String username) {
+		Driver targetedDriver = this.getDriver(username);		//get obj inside the repo
+		return targetedDriver.getFavoriteAreas();
 	}
 	
 }

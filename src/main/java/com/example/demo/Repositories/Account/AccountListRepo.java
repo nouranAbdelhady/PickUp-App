@@ -2,10 +2,7 @@ package com.example.demo.Repositories.Account;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.demo.Entities.Driver;
 import com.example.demo.Entities.IAccount;
-import com.example.demo.Entities.Passenger;
 
 public class AccountListRepo implements AccountRepository{
 

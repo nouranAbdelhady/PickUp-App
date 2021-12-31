@@ -3,6 +3,7 @@ package com.example.demo.Services.Account;
 import java.util.List;
 
 import com.example.demo.Entities.Driver;
+import com.example.demo.Entities.FavoriteArea;
 import com.example.demo.Entities.Notification;
 import com.example.demo.Repositories.Account.DriverListRepo;
 import com.example.demo.Repositories.Account.DriverRepository;
@@ -39,4 +40,14 @@ public class DriverService implements IDriverService {
 		return repository.deleteDriver(username);
 	}
 
+	@Override
+	public boolean update(Driver toUpdate, FavoriteArea newArea) {
+		return repository.update(toUpdate , newArea);
+	}
+
+	@Override
+	public List<FavoriteArea> getFavoriteAreas(String username) {
+		return repository.getFavoriteAreas(username);
+	}
+	
 }

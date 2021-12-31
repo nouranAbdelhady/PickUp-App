@@ -1,6 +1,7 @@
 package com.example.demo.Controllers.Account;
 
 import com.example.demo.Entities.Driver;
+import com.example.demo.Entities.FavoriteArea;
 import com.example.demo.Entities.Notification;
 import com.example.demo.Services.Account.AccountService;
 import com.example.demo.Services.Account.DriverService;
@@ -41,6 +42,11 @@ public class DriverController {
         return driverService.getDriver(username);
     }
     
+    @GetMapping("/drivers/{username}/favoriteAreas")
+    public List<FavoriteArea> getFavoriteAreas(@PathVariable String username) {
+        return driverService.getFavoriteAreas(username);
+    }
+    
     @DeleteMapping("delete/driver/{username}")
     public boolean delete(@PathVariable String username) {
         return (driverService.delete(username) && accountService.delete(username));
@@ -50,5 +56,5 @@ public class DriverController {
     public List<Notification> getNotifications(@PathVariable String username) {
         return driverService.getNotifications(username);
     }
-
+        
 }

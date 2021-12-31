@@ -3,6 +3,8 @@ package com.example.demo.Controllers.Ride;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Services.Account.IPassengerService;
+import com.example.demo.Services.Account.PassengerService;
 import com.example.demo.Services.Ride.IRidesService;
 import com.example.demo.Services.Ride.RidesService;
 
@@ -15,36 +17,45 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RideController {
-    private IRidesService service = new RidesService();
+    private IRidesService rideService;
+    private IPassengerService passengerService;
+    
+    public RideController() {
+    	rideService = new RidesService();
+    	passengerService = new PassengerService();
+    }
 
-    @PostMapping("add/ride")
-    public Boolean add(@RequestBody Ride ride) {
-        return service.add(ride);
+    //request a new ride
+    @PostMapping("/passengers/{username}/add/ride")
+    public Boolean add(@PathVariable String username,@RequestBody Ride ride) {
+    	Passenger requestedBy = passengerService.getPassenger(username);
+    	ride.setRequestedBy(requestedBy);
+        return rideService.add(ride);
     }
 
     @GetMapping("/rides")
     public List<Ride> getAll() {
-        return service.getAll();
+        return rideService.getAll();
     }
 
     @GetMapping("/rides/{id}")
     public Ride get(@PathVariable int id) {
-        return service.get(id);
+        return rideService.get(id);
     }
     
     @GetMapping("/rides/{rideId}/offer/{offerId}")
     public Offer getOffer(@PathVariable int rideId , @PathVariable int offerId) {
-        return service.getOffer(rideId,offerId);
+        return rideService.getOffer(rideId,offerId);
     }
 
     @DeleteMapping("/rides/{id}/delete")
     public boolean delete(@PathVariable int id) {
-        return service.delete(id);
+        return rideService.delete(id);
     }
     
     @PostMapping("/rides/{id}/update")
     public boolean update(@PathVariable int id, @RequestBody Offer newOffer) {
-    	Ride toUpdate =  service.get(id);
-        return service.update(toUpdate,newOffer);
+    	Ride toUpdate =  rideService.get(id);
+        return rideService.update(toUpdate,newOffer);
     }
 }

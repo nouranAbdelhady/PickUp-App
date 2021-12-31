@@ -16,7 +16,6 @@ public class RidesService implements IRidesService {
 
     @Override
     public Ride get(int id) {
-        // TODO Auto-generated method stub
         return rideRep.get(id);
     }
 

@@ -3,7 +3,9 @@ package com.example.demo.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Driver extends IAccount{
+import com.example.demo.Extra.Observer1;
+
+public class Driver extends IAccount implements Observer1{
 		
 	protected int license;
 	protected int nationalId;
@@ -42,6 +44,55 @@ public class Driver extends IAccount{
 		this.type = "Driver";
 		this.isLoggedIn = false;
 		this.isVerified = false;
+	}
+
+	@Override
+	public void getNotified(Notification newNotification) {
+		this.getNotifications().add(newNotification);
+	}
+
+	public int getLicense() {
+		return license;
+	}
+
+	public void setLicense(int license) {
+		this.license = license;
+	}
+
+	public int getNationalId() {
+		return nationalId;
+	}
+
+	public void setNationalId(int nationalId) {
+		this.nationalId = nationalId;
+	}
+
+	public List<FavoriteArea> getFavoriteAreas() {
+		return favoriteAreas;
+	}
+
+	public void setFavoriteAreas(List<FavoriteArea> favoriteAreas) {
+		this.favoriteAreas = favoriteAreas;
+	}
+
+	public List<Ride> getAvaliableRides() {
+		return avaliableRides;
+	}
+	
+	public boolean addFavoriteAreas(FavoriteArea newArea) {
+		return this.favoriteAreas.add(newArea);
+	}
+
+	public void setAvaliableRides(List<Ride> avaliableRides) {
+		this.avaliableRides = avaliableRides;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 }

@@ -6,8 +6,6 @@ import com.example.demo.Services.Account.AccountService;
 import com.example.demo.Services.Account.IAccountService;
 
 import java.util.List;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
