@@ -46,25 +46,11 @@ public class RideController {
     public Ride get(@PathVariable int id) {
         return rideService.get(id);
     }
-    
-    @GetMapping("/rides/{rideId}/offers")
-    public List<Offer> getOffers(@PathVariable int rideId) {
-        return rideService.getOffers(rideId);
-    }
-    
-    @GetMapping("/rides/{rideId}/offers/{offerId}")
-    public Offer getOffer(@PathVariable int rideId , @PathVariable int offerId) {
-        return rideService.getOffer(rideId,offerId);
-    }
 
     @DeleteMapping("/rides/{id}/delete")
     public boolean delete(@PathVariable int id) {
         return rideService.delete(id);
     }
     
-    @PostMapping("/rides/{id}/update")
-    public boolean update(@PathVariable int id, @RequestBody Offer newOffer) {
-    	Ride toUpdate =  rideService.get(id);
-        return rideService.update(toUpdate,newOffer);
-    }
+   
 }

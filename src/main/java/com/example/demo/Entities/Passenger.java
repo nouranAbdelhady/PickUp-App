@@ -3,10 +3,21 @@ package com.example.demo.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Passenger extends IAccount{
 	
+	@JsonIgnore
 	protected List<Ride> previousRides;
 	
+	public List<Ride> getPreviousRides() {
+		return previousRides;
+	}
+
+	public void setPreviousRides(List<Ride> previousRides) {
+		this.previousRides = previousRides;
+	}
+
 	public Passenger(String username, String password , String email , int mobileNumber){
 		this.username = username;
 		this.password = password;
