@@ -1,16 +1,12 @@
 package com.example.demo.Entities.Account;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.demo.Entities.Ride.Ride;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Passenger extends IAccount{
-	
-	@JsonIgnore
-	protected List<Ride> previousRides;
-	
+		
 	@JsonIgnore
 	protected Ride requestedRide = null;
 	
@@ -22,14 +18,6 @@ public class Passenger extends IAccount{
 		this.requestedRide = requestedRide;
 	}
 
-	public List<Ride> getPreviousRides() {
-		return previousRides;
-	}
-
-	public void setPreviousRides(List<Ride> previousRides) {
-		this.previousRides = previousRides;
-	}
-
 	public Passenger(String username, String password , String email , int mobileNumber){
 		this.username = username;
 		this.password = password;
@@ -39,12 +27,10 @@ public class Passenger extends IAccount{
 		this.isVerified = true;
 		this.type = "Passenger";
 		this.setNotifications( new ArrayList<Notification>() );
-		this.previousRides = new ArrayList<Ride>();
 	}
 	
 	Passenger(){
 		this.setNotifications( new ArrayList<Notification>() );
-		this.previousRides = new ArrayList<Ride>();
 		this.isLoggedIn = false;
 		this.isVerified = true;
 		this.type = "Passenger";

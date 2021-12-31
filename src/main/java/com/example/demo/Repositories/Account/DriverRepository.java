@@ -21,6 +21,5 @@ public interface DriverRepository {
 	public Driver getSinglePending(String username);
 	public boolean updateVerify(Driver targetedDriver);
 	public Ride getCurrentRide(Driver targetedDriver);
-	public void updateAvaliableRides(Ride accepted);
-	
+	public void updateAvaliableRides(Ride accepted);	
 }

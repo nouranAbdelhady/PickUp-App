@@ -3,7 +3,6 @@ package com.example.demo.Repositories.Ride;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.Entities.*;
 import com.example.demo.Entities.Account.Notification;
 import com.example.demo.Entities.Ride.Offer;
 import com.example.demo.Entities.Ride.Ride;
@@ -38,7 +37,6 @@ public class RideListRepo implements RideRepository {
                 }
             }
         }
-
         return null;
     }
 
@@ -96,6 +94,7 @@ public class RideListRepo implements RideRepository {
                                
                 //start ride
                 ride.setActive(true);
+                ride.setCost(acceptedOffer.getPrice());
                 ride.setCurrentDriver(acceptedOffer.getSuggestedBy());         
               
                 toStart.subscribeStart(acceptedOffer.getSuggestedBy());		//driver
@@ -107,6 +106,20 @@ public class RideListRepo implements RideRepository {
             }
         }
 		return false;
+	}
+
+	@Override
+	public String endRide(Ride toEnd) {
+		for (Ride ride : allRides) {
+            if (ride.getRideId() == toEnd.getRideId()) {
+            	
+            	toEnd.setActive(false);
+            	toEnd.notifyObserversWithEnd(toEnd);
+                                
+                return "Ride ended";
+            }
+        }
+		return "Error: could not end ride";
 	}
 
 }

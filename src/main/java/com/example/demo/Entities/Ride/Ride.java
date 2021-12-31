@@ -22,9 +22,9 @@ public class Ride implements Subject2{
     @JsonIgnore
     private List<Offer> offers;
     
-    //Observer2
+    //Observer2	[hybrid observer]
     @JsonIgnore
-    List<Passenger> Sub = new ArrayList<Passenger>();
+    List<Passenger> Sub = new ArrayList<Passenger>();	//to notify with new offer (howa passenger el requested)
     
     @JsonIgnore
     List<IAccount> startRideSub = new ArrayList<IAccount>();
@@ -37,12 +37,11 @@ public class Ride implements Subject2{
     private Driver currentDriver = null;
     @JsonIgnore
     private Rate rate;
+    private double cost;
     
     /*
     private String title;
-    private String description;
-    private double cost;
-    
+    private String description;   
     */
 
     public Ride() {
@@ -51,7 +50,15 @@ public class Ride implements Subject2{
     	this.setRideId(Ride.counter);
     }
 
-    public Ride(String source, String destination) {
+    public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	public Ride(String source, String destination) {
         this.source = source;
         this.destination = destination;
         this.offers = new ArrayList<Offer>();
@@ -133,9 +140,28 @@ public class Ride implements Subject2{
 					//passenger
 					Notification newNotificationForPassenger = new Notification("Ride started - Driver name: "+accepted.getCurrentDriver().getUsername()+" - Price:"+accepted.getOffers().get(0).getPrice());
 	                obj.getNotified(newNotificationForPassenger);
+	                ((Passenger)obj).setRequestedRide(null);
 				}
 				
 				obj.setCurrentRide(accepted);
+				
+			}   
+		}		
+	}
+	
+	public void notifyObserversWithEnd(Ride ended) {		//means that the ride started
+		for ( IAccount obj :  startRideSub) 
+		{ 
+			if(obj!=null) {
+				
+				if(obj.getType().compareTo("Driver")==0){	//add to balance
+					((Driver)obj).setBalance(((Driver)obj).getBalance()+ended.getCost());
+				}
+				
+				Notification newNotification = new Notification("Ride ended :)");               
+				obj.getNotified(newNotification);
+				obj.getPreviousRides().add(ended);
+				obj.setCurrentRide(null);
 				
 			}   
 		}		

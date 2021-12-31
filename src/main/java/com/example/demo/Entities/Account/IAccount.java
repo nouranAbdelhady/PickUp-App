@@ -19,6 +19,8 @@ public abstract class IAccount implements Observer2{
 	
 	@JsonIgnore
 	private Ride currentRide = null;
+	@JsonIgnore
+	private List<Ride> previousRides = new ArrayList<Ride>();
 	
 	@JsonIgnore
 	private List<Notification> notifications;
@@ -100,5 +102,11 @@ public abstract class IAccount implements Observer2{
 	}
 	public void setCurrentRide(Ride currentRide) {
 		this.currentRide = currentRide;
+	}
+	public List<Ride> getPreviousRides() {
+		return previousRides;
+	}
+	public void setPreviousRides(List<Ride> previousRides) {
+		this.previousRides = previousRides;
 	}	
 }

@@ -74,7 +74,18 @@ public class PassengerController {
     		return passengerService.getCurrentRide(targetedPassenger);
     	}
     	else {
-    		return null;		//driver not logged in
+    		return null;		//passenger not logged in
+    	}
+    }
+    
+    @GetMapping("/passengers/{username}/previousRides")
+    public List<Ride> getPreviousRides(@PathVariable String username) {
+    	Passenger targetedPassenger = passengerService.getPassenger(username);
+    	if(targetedPassenger!=null && targetedPassenger.getIsLoggedIn()) {
+    		return passengerService.getPreviousRides(targetedPassenger);
+    	}
+    	else {
+    		return null;		
     	}
     }
 

@@ -15,5 +15,6 @@ public interface PassengerRepository {
 	public boolean deletePassenger(String username);
 	public Ride getRequestedRide(String username);
 	public Ride getCurrentRide(Passenger targetedPassenger);
+	public List<Ride> getPreviousRides(Passenger targetedPassenger);
 	
 }

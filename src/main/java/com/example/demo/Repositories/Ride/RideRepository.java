@@ -2,7 +2,6 @@ package com.example.demo.Repositories.Ride;
 
 import java.util.List;
 
-import com.example.demo.Entities.*;
 import com.example.demo.Entities.Ride.Offer;
 import com.example.demo.Entities.Ride.Ride;
 
@@ -16,5 +15,6 @@ public interface RideRepository {
 	public Offer getOffer(int rideId, int offerId);
 	public List<Offer> getOffers(int rideId);
 	public boolean acceptOffer(Ride toStart, Offer acceptedOffer);
+	public String endRide(Ride toEnd);
 	
 }

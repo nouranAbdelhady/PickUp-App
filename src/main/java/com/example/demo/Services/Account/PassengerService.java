@@ -50,5 +50,10 @@ public class PassengerService implements IPassengerService {
 		return passengerRepo.getCurrentRide(targetedPassenger);
 	}
 
+	@Override
+	public List<Ride> getPreviousRides(Passenger targetedPassenger) {
+		return passengerRepo.getPreviousRides(targetedPassenger);
+	}
+
 
 }

@@ -2,7 +2,6 @@ package com.example.demo.Controllers.Ride;
 
 import java.util.List;
 
-import com.example.demo.Entities.*;
 import com.example.demo.Entities.Account.Passenger;
 import com.example.demo.Entities.Distance.GoogleMapsCalculator;
 import com.example.demo.Entities.Distance.HarvesineCalculator;

@@ -80,5 +80,6 @@ public class DriverService implements IDriverService {
 	public void updateAvaliableRides(Ride accepted) {
 		repository.updateAvaliableRides(accepted);
 	}
+
 	
 }

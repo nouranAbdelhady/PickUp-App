@@ -14,4 +14,5 @@ public interface IRidesService {
     public boolean acceptOffer(Ride toStart, Offer acceptedOffer);
 	public Offer getOffer(int rideId, int offerId);
 	public List<Offer> getOffers(int rideId);
+	public String endRide(Ride toEnd);
 }

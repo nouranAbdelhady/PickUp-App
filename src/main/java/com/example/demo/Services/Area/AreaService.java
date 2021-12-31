@@ -2,7 +2,6 @@ package com.example.demo.Services.Area;
 
 import java.util.List;
 
-import com.example.demo.Entities.*;
 import com.example.demo.Entities.Account.Driver;
 import com.example.demo.Entities.Account.FavoriteArea;
 import com.example.demo.Repositories.Area.FavoriteAreaListRepo;

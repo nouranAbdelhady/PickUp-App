@@ -1,6 +1,5 @@
 package com.example.demo.Controllers.Ride;
 
-import com.example.demo.Entities.*;
 import com.example.demo.Entities.Account.Driver;
 import com.example.demo.Entities.Ride.Offer;
 import com.example.demo.Entities.Ride.Ride;

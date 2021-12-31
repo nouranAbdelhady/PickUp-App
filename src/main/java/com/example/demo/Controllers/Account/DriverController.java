@@ -8,6 +8,8 @@ import com.example.demo.Services.Account.AccountService;
 import com.example.demo.Services.Account.DriverService;
 import com.example.demo.Services.Account.IAccountService;
 import com.example.demo.Services.Account.IDriverService;
+import com.example.demo.Services.Ride.IRidesService;
+import com.example.demo.Services.Ride.RidesService;
 
 import java.util.List;
 
@@ -15,17 +17,22 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DriverController {
     private IDriverService driverService;
     private IAccountService accountService;
+    private IRidesService rideService;
 
     public DriverController() {
         driverService = new DriverService();
         accountService = new AccountService();
+        rideService = new RidesService();
     }
     
     @PostMapping("/register/driver")
@@ -101,6 +108,24 @@ public class DriverController {
     	else {
     		return null;		//driver not logged in
     	}
+    }
+    
+    @RequestMapping("/drivers/{username}/currentRide")
+    public String endRide(@PathVariable String username , @RequestParam boolean end) {
+    	if(end) {
+    		System.out.println("Ending ride");
+    		Driver targetedDriver = driverService.getDriver(username);
+        	if(targetedDriver!=null && targetedDriver.getIsLoggedIn()) {
+        		return rideService.endRide(targetedDriver.getCurrentRide());
+        	}
+        	else {
+        		return "Error: driver not logged in";		//driver not logged in
+        	}
+    	}
+    	else {
+    		return "Continue ride...";
+    	}
+    	
     }
         
 }
