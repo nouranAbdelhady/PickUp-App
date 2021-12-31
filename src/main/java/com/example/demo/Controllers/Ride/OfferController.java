@@ -46,6 +46,11 @@ public class OfferController {
         return rideService.getOffer(rideId,offerId);
     }
     
+    /*
+    Ride targetedRide = passengerService.getRequestedRide(username);
+    Offer toUpdate = rideService.getOffer(targetedRide.getRideId(),choice);
+    */
+    
     @GetMapping("/passengers/{username}/requestedRide/offers")
     public List<Offer> getOffersForRide(@PathVariable String username) {
     	Ride targetedRide = passengerService.getRequestedRide(username);

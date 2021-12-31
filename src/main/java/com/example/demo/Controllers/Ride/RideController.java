@@ -3,6 +3,9 @@ package com.example.demo.Controllers.Ride;
 import java.util.List;
 
 import com.example.demo.Entities.*;
+import com.example.demo.Entities.Distance.GoogleMapsCalculator;
+import com.example.demo.Entities.Distance.HarvesineCalculator;
+import com.example.demo.Entities.Distance.IDistanceCalculator;
 import com.example.demo.Services.Account.IPassengerService;
 import com.example.demo.Services.Account.PassengerService;
 import com.example.demo.Services.Area.AreaService;
@@ -23,22 +26,48 @@ public class RideController {
     private IPassengerService passengerService;
     public IAreaService areaService;
     
+    public static int APICount =0;
+    IDistanceCalculator distanceCalculator;
+    
     public RideController() {
     	rideService = new RidesService();
     	areaService = new AreaService();
     	passengerService = new PassengerService();
     }
+    
+    private IDistanceCalculator getDistanceCalculationStrategy() {
+    	//exceeded specific number of calls (assume it is 2)
+		if(APICount>2) {
+			return (new HarvesineCalculator());			
+		}
+		else {
+			return (new GoogleMapsCalculator());
+		}
+	}
 
     //request a new ride
     @PostMapping("/passengers/{username}/add/ride")
     public Boolean add(@PathVariable String username,@RequestBody Ride ride) {
+    	
+    	APICount++;
+    	
     	Passenger requestedBy = passengerService.getPassenger(username);
     	ride.setRequestedBy(requestedBy);
+    	
+    	//calculate distance
+    	distanceCalculator = getDistanceCalculationStrategy();
+    	//Google --> 10 / Harvesine --> 20
+    	ride.setDistance(distanceCalculator.calculateDistance());
+    	ride.setETA(distanceCalculator.calculateETA());   	
+    	
+    	//save data to repo
     	//ride.sub(requestedBy);
         return rideService.add(ride);
     }
 
-    @GetMapping("/rides")
+    
+
+	@GetMapping("/rides")
     public List<Ride> getAll() {
         return rideService.getAll();
     }

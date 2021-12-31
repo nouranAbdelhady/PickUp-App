@@ -20,14 +20,17 @@ public class Ride implements Subject2{
     
     //Observer2
     @JsonIgnore
-    List<Passenger> Sub =new ArrayList<Passenger>();
+    List<Passenger> Sub = new ArrayList<Passenger>();
+    
+    private int ETA;
+    private double distance;
     
     /*
     private String title;
     private String description;
     private double cost;
     private int rate;
-    private int timeToLeave;
+   
     
     private boolean isActive;
     private Driver currentDriver;
@@ -101,4 +104,21 @@ public class Ride implements Subject2{
 			}   
 		}		
 	}
+
+	public int getETA() {
+		return ETA;
+	}
+
+	public void setETA(int ETA) {
+		this.ETA = ETA;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+	
 }
