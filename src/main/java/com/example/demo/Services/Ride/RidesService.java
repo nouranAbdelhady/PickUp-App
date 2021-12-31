@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.Entities.Account.FavoriteArea;
 import com.example.demo.Entities.Account.Notification;
 import com.example.demo.Entities.Ride.Offer;
+import com.example.demo.Entities.Ride.Rate;
 import com.example.demo.Entities.Ride.Ride;
 import com.example.demo.Repositories.Ride.RideListRepo;
 import com.example.demo.Repositories.Ride.RideRepository;
@@ -85,6 +86,16 @@ public class RidesService implements IRidesService{
 	@Override
 	public String endRide(Ride toEnd) {
 		return rideRep.endRide(toEnd);
+	}
+
+	@Override
+	public Rate getRate(Ride targetedRide) {
+		return rideRep.getRate(targetedRide);
+	}
+
+	@Override
+	public boolean addRate(Ride targetedRide, Rate newRate) {
+		return rideRep.addRate(targetedRide,newRate);
 	}
 
 }

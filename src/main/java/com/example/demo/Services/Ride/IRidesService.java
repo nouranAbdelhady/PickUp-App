@@ -3,6 +3,7 @@ package com.example.demo.Services.Ride;
 import java.util.List;
 
 import com.example.demo.Entities.Ride.Offer;
+import com.example.demo.Entities.Ride.Rate;
 import com.example.demo.Entities.Ride.Ride;
 
 public interface IRidesService {
@@ -15,4 +16,6 @@ public interface IRidesService {
 	public Offer getOffer(int rideId, int offerId);
 	public List<Offer> getOffers(int rideId);
 	public String endRide(Ride toEnd);
+	public Rate getRate(Ride targetedRide);
+	public boolean addRate(Ride targetedRide, Rate newRate);
 }

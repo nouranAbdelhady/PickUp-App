@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.demo.Entities.Account.Notification;
 import com.example.demo.Entities.Ride.Offer;
+import com.example.demo.Entities.Ride.Rate;
 import com.example.demo.Entities.Ride.Ride;
 
 public class RideListRepo implements RideRepository {
@@ -120,6 +121,28 @@ public class RideListRepo implements RideRepository {
             }
         }
 		return "Error: could not end ride";
+	}
+
+	@Override
+	public Rate getRate(Ride targetedRide) {
+		return targetedRide.getRate();
+	}
+
+	@Override
+	public boolean addRate(Ride targetedRide, Rate newRate) {
+		for (Ride ride : allRides) {
+            if (ride.getRideId() == targetedRide.getRideId()) {
+            	if(ride.getRate()==null) {
+            		ride.setRate(newRate);
+                	System.out.println("Rate added");
+                    return true;
+            	}
+            	else {
+            		return false;
+            	}
+            }
+        }
+        return false;
 	}
 
 }

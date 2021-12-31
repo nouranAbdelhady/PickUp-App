@@ -2,6 +2,7 @@ package com.example.demo.Repositories.Ride;
 
 import java.util.List;
 import com.example.demo.Entities.Ride.Offer;
+import com.example.demo.Entities.Ride.Rate;
 import com.example.demo.Entities.Ride.Ride;
 
 public class RideDatabaseRepo implements RideRepository {
@@ -60,6 +61,18 @@ public class RideDatabaseRepo implements RideRepository {
 	public String endRide(Ride toEnd) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Rate getRate(Ride targetedRide) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addRate(Ride targetedRide, Rate newRate) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 		
 
