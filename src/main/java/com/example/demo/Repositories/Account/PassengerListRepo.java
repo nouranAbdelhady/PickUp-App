@@ -61,5 +61,10 @@ public class PassengerListRepo implements PassengerRepository{
 		}
 		return null;
 	}
+
+	@Override
+	public Ride getCurrentRide(Passenger targetedPassenger) {
+		return targetedPassenger.getCurrentRide();
+	}
 	
 }

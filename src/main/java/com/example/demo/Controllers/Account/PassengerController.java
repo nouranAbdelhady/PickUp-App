@@ -66,5 +66,16 @@ public class PassengerController {
     public List<Notification> getNotifications(@PathVariable String username) {
         return passengerService.getNotifications(username);
     }
+    
+    @GetMapping("/passengers/{username}/currentRide")
+    public Ride getCurrentRide(@PathVariable String username) {
+    	Passenger targetedPassenger = passengerService.getPassenger(username);
+    	if(targetedPassenger!=null && targetedPassenger.getIsLoggedIn()) {
+    		return passengerService.getCurrentRide(targetedPassenger);
+    	}
+    	else {
+    		return null;		//driver not logged in
+    	}
+    }
 
 }

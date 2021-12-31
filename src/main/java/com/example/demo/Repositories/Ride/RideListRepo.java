@@ -56,28 +56,54 @@ public class RideListRepo implements RideRepository {
 
     //changed
     @Override
-	public boolean update(Ride toUpdate, Offer newOffer) {
-		for (Ride ride : allRides) {
-            if (ride.getRideId() == toUpdate.getRideId()) {
-                ride.getOffers().add(newOffer);
-                
-                Notification newNotification = new Notification("Driver with username:"+newOffer.getSuggestedBy().getUsername()+" offered price: "+newOffer.getPrice());
-                String Message="Driver with username:"+newOffer.getSuggestedBy().getUsername()+" offered price: "+newOffer.getPrice();
-                
-                newNotification.setMessage(Message);
-                toUpdate.subscribePassenger(toUpdate.getRequestedBy());
-                toUpdate.notifyObservers(newNotification);
-				//toUpdate.getRequestedBy().getNotified(newNotification);
-                return true;
-            }
-        }
-		return false;
+	public boolean addOffer(Ride toUpdate, Offer newOffer) {
+    	
+    	//get ride in repo
+    	
+    	//Ride ride = get(toUpdate.getRideId());
+    	
+    	//if(ride!=null) {
+    		toUpdate.getOffers().add(newOffer);
+    		//ride.getOffers().add(newOffer);
+            
+            Notification newNotification = new Notification("Driver with username: "+newOffer.getSuggestedBy().getUsername()+" offered price: "+newOffer.getPrice());
+            toUpdate.subscribePassenger(toUpdate.getRequestedBy());
+            
+            toUpdate.notifyObserversWithNewOffer(newNotification);
+			//toUpdate.getRequestedBy().getNotified(newNotification);
+            return true;
+    	//}
+    	
+		//return false;
 	}
 
 	@Override
 	public List<Offer> getOffers(int rideId) {
 		Ride targetedRide = this.get(rideId);
 		return targetedRide.getOffers();
+	}
+
+	@Override
+	public boolean acceptOffer(Ride toStart, Offer acceptedOffer) {
+		for (Ride ride : allRides) {
+            if (ride.getRideId() == toStart.getRideId()) {
+            	//remove all offers and only keep the accepted one
+            	ride.getOffers().clear();
+                ride.getOffers().add(acceptedOffer);
+                               
+                //start ride
+                ride.setActive(true);
+                ride.setCurrentDriver(acceptedOffer.getSuggestedBy());         
+              
+                toStart.subscribeStart(acceptedOffer.getSuggestedBy());		//driver
+                toStart.subscribeStart(toStart.getRequestedBy());		//passenger
+                
+                toStart.notifyObserversWithAcceptOffer(toStart);
+                                
+                return true;
+            }
+        }
+		return false;
 	}
 
 }

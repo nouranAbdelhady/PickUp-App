@@ -3,10 +3,9 @@ package com.example.demo.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.Extra.Observer2;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Passenger extends IAccount implements Observer2{
+public class Passenger extends IAccount{
 	
 	@JsonIgnore
 	protected List<Ride> previousRides;

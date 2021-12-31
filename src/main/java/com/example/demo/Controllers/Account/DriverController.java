@@ -91,5 +91,16 @@ public class DriverController {
     		return null;		//driver not logged in
     	}
     }
+    
+    @GetMapping("/drivers/{username}/currentRide")
+    public Ride getCurrentRide(@PathVariable String username) {
+    	Driver targetedDriver = driverService.getDriver(username);
+    	if(targetedDriver!=null && targetedDriver.getIsLoggedIn()) {
+    		return driverService.getCurrentRide(targetedDriver);
+    	}
+    	else {
+    		return null;		//driver not logged in
+    	}
+    }
         
 }

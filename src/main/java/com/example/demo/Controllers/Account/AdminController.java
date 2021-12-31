@@ -43,12 +43,18 @@ public class AdminController {
     	System.out.println("Admin wants to verify: "+ username);
         Driver targetedDriver = getSinglePending(username);
         
-        if( driverService.updateVerify(targetedDriver) ) {
-        	return "Driver with username: "+username+" successfully verified";
+        if(targetedDriver!=null) {
+        	if( driverService.updateVerify(targetedDriver) ) {
+            	return "Driver with username: "+username+" successfully verified";
+            }
+            else {
+            	return "Error: verification not successful";
+            }
         }
         else {
-        	return "Error: verification not successful";
-        }
+        	return "Error: invalid username enetered";
+        }        
+        
     }
         
 }

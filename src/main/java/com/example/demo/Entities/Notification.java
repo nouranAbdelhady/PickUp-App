@@ -2,16 +2,7 @@ package com.example.demo.Entities;
 
 public class Notification {
 	
-	private static int counter = 0;
-	private int notificationNumber;
 	private String message;
-	
-	public int getNotificationNumber() {
-		return notificationNumber;
-	}
-	public void setNotificationNumber(int notificationNumber) {
-		this.notificationNumber = notificationNumber;
-	}
 
 	public String getMessage() {
 		return message;
@@ -21,14 +12,10 @@ public class Notification {
 	}
 	
 	public Notification() {	
-		Notification.counter++;
-    	this.setNotificationNumber(Notification.counter);
-    	this.message=null;
+		this.message=null;
 	}
 	public Notification(String message) {
 		super();
-		Notification.counter++;
-    	this.setNotificationNumber(Notification.counter);
 		this.message = message;
 	}
 	

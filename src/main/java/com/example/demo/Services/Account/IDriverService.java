@@ -16,4 +16,6 @@ public interface IDriverService {
 	List<Driver> getPendingDrivers();
 	public Driver getSinglePending(String username);
 	public boolean updateVerify(Driver targetedDriver);
+	public Ride getCurrentRide(Driver targetedDriver);
+	public void updateAvaliableRides(Ride accepted);
 }

@@ -78,6 +78,18 @@ public class DriverDatabaseRepo implements DriverRepository{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public Ride getCurrentRide(Driver targetedDriver) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateAvaliableRides(Ride accepted) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

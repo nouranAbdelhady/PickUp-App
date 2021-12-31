@@ -104,5 +104,17 @@ public class DriverListRepo implements DriverRepository{
 		}
 		return false;
 	}
+
+	@Override
+	public Ride getCurrentRide(Driver targetedDriver) {
+		return targetedDriver.getCurrentRide();
+	}
+
+	@Override
+	public void updateAvaliableRides(Ride accepted) {
+		for	(int i=0 ; i <allDrivers.size() ; i++) {
+			allDrivers.get(i).getAvaliableRides().remove(accepted);
+		}
+	}
 	
 }

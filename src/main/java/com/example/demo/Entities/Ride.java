@@ -22,18 +22,22 @@ public class Ride implements Subject2{
     @JsonIgnore
     List<Passenger> Sub = new ArrayList<Passenger>();
     
+    @JsonIgnore
+    List<IAccount> startRideSub = new ArrayList<IAccount>();
+    
     private int ETA;
     private double distance;
+      
+    private boolean isActive = false;
+    @JsonIgnore
+    private Driver currentDriver = null;
     
     /*
     private String title;
     private String description;
     private double cost;
-    private int rate;
-   
+    private int rate;   
     
-    private boolean isActive;
-    private Driver currentDriver;
     */
 
     public Ride() {
@@ -91,16 +95,43 @@ public class Ride implements Subject2{
 
 	@Override
 	public boolean subscribePassenger(Passenger newSubscription) {
-		 Sub.add(newSubscription);
+		
+		//only add new passengers
+		if(!Sub.contains(newSubscription)) {
+			Sub.add(newSubscription);
+		}
+		 
 		return  true ;
 	}
 
 	@Override
-	public void notifyObservers(Notification newNotification) {
+	public void notifyObserversWithNewOffer(Notification newNotification) {
 		for ( Passenger p1 :  Sub) 
 		{ 
 			if(p1!=null) {
 				 p1.getNotified(newNotification);
+			}   
+		}		
+	}
+	
+	@Override
+	public void notifyObserversWithAcceptOffer(Ride accepted) {		//means that the ride started
+		for ( IAccount obj :  startRideSub) 
+		{ 
+			if(obj!=null) {
+				System.out.println("Start Ride Notification...");
+				if(obj.getType().compareTo("Driver")==0){
+					Notification newNotificationForDriver = new Notification("Your offer on ride:"+accepted.getRideId()+" is accepted");               
+					obj.getNotified(newNotificationForDriver);
+				}
+				else {
+					//passenger
+					Notification newNotificationForPassenger = new Notification("Ride started - Driver name:"+accepted.getCurrentDriver().getUsername()+" - Price:"+accepted.getOffers().get(0).getPrice());
+	                obj.getNotified(newNotificationForPassenger);
+				}
+				
+				obj.setCurrentRide(accepted);
+				
 			}   
 		}		
 	}
@@ -120,5 +151,28 @@ public class Ride implements Subject2{
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public Driver getCurrentDriver() {
+		return currentDriver;
+	}
+
+	public void setCurrentDriver(Driver currentDriver) {
+		this.currentDriver = currentDriver;
+	}
+
+	@Override
+	public void subscribeStart(IAccount newSubscription) {
+		startRideSub.add(newSubscription);
+	}
+	
+	
 	
 }

@@ -44,6 +44,12 @@ public class PassengerDatabaseRepo implements PassengerRepository{
 	public Ride getRequestedRide(String username) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Ride getCurrentRide(Passenger targetedPassenger) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 	
 	

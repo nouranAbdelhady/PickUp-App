@@ -10,8 +10,9 @@ public interface RideRepository {
     Ride get(int id);
     List<Ride> getAll();
     boolean delete(int id);
-    public boolean update(Ride toUpdate, Offer newOffer);
+    public boolean addOffer(Ride toUpdate, Offer newOffer);
 	public Offer getOffer(int rideId, int offerId);
 	public List<Offer> getOffers(int rideId);
+	public boolean acceptOffer(Ride toStart, Offer acceptedOffer);
 	
 }

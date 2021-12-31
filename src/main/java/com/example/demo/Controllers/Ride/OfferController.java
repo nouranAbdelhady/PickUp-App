@@ -37,7 +37,7 @@ public class OfferController {
     	
         if( toUpdate!=null && (suggestedBy.getIsVerified() && suggestedBy!=null) ) {
         	newOffer.setSuggestedBy(suggestedBy);
-            rideService.update(toUpdate,newOffer);
+            rideService.addOffer(toUpdate,newOffer);
             return "New offer successfully added to ride with id:"+rideId;
         }
         else {
@@ -75,7 +75,7 @@ public class OfferController {
     
     //enter offer id we want to accept
     @RequestMapping("/passengers/{username}/requestedRide/offers")
-    public boolean acceptOffer(@PathVariable String username, @RequestParam int offerChoice) {
+    public String acceptOffer(@PathVariable String username, @RequestParam int offerChoice) {
     	System.out.println("Accepted offer is with id: "+ offerChoice);
     	Ride targetedRide = passengerService.getRequestedRide(username);
     	Offer targetedOffer = rideService.getOffer(targetedRide.getRideId(),offerChoice);
@@ -83,9 +83,18 @@ public class OfferController {
     	//services to invoke:
     	
     	//targetedOffer isAccepted=true
+    	targetedOffer.setAccepted(true);
     	//offers 3ala el targetdRide should only have THIS offer
     	//targtedRide isActive=true
     	
-        return true;
+    	if( rideService.acceptOffer(targetedRide, targetedOffer) ) {
+    		//remove the ride from list of avaliableRides (remove from ALL drivers)
+    		driverService.updateAvaliableRides(targetedRide);
+    		return "Offer with id: "+offerChoice+" is accepted";
+    	}
+    	else {
+    		return "Error: could not accept offer";
+    	}
+        
     }
 }

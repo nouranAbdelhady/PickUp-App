@@ -70,4 +70,15 @@ public class DriverService implements IDriverService {
 	public boolean updateVerify(Driver targetedDriver) {
 		return repository.updateVerify(targetedDriver);
 	}
+
+	@Override
+	public Ride getCurrentRide(Driver targetedDriver) {
+		return repository.getCurrentRide(targetedDriver);
+	}
+	
+	@Override
+	public void updateAvaliableRides(Ride accepted) {
+		repository.updateAvaliableRides(accepted);
+	}
+	
 }

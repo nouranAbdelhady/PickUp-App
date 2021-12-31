@@ -32,7 +32,7 @@ public class RideDatabaseRepo implements RideRepository {
 	}
 
 	@Override
-	public boolean update(Ride toUpdate, Offer newOffer) {
+	public boolean addOffer(Ride toUpdate, Offer newOffer) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -47,6 +47,12 @@ public class RideDatabaseRepo implements RideRepository {
 	public List<Offer> getOffers(int rideId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean acceptOffer(Ride toStart, Offer acceptedOffer) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 		
 

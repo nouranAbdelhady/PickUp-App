@@ -3,9 +3,10 @@ package com.example.demo.Entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.Extra.Observer2;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public abstract class IAccount {
+public abstract class IAccount implements Observer2{
 	
 	protected String type;
 	protected String username;
@@ -14,6 +15,9 @@ public abstract class IAccount {
 	protected String email;
 	private int mobileNumber;
 	protected Boolean isLoggedIn;
+	
+	@JsonIgnore
+	private Ride currentRide = null;
 	
 	@JsonIgnore
 	private List<Notification> notifications;
@@ -84,6 +88,16 @@ public abstract class IAccount {
 	}
 	public void setNotifications(List<Notification> notifications) {
 		this.notifications = notifications;
+	}		
+	@Override
+	public void getNotified(Notification newNotification) {
+		 System.out.println(newNotification);
+		 this.getNotifications().add(newNotification);	
+	}
+	public Ride getCurrentRide() {
+		return currentRide;
+	}
+	public void setCurrentRide(Ride currentRide) {
+		this.currentRide = currentRide;
 	}	
-	
 }

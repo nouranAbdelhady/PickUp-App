@@ -46,7 +46,7 @@ public class FavoriteAreaListRepo implements FavoriteAreaRepository {
     public boolean update(FavoriteArea targetedArea , Driver newSub) {    
     	for (FavoriteArea singleArea : allAreas) {
     		//area already exists
-            if (singleArea.getAreaName() == targetedArea.getAreaName()) {	
+            if (singleArea.getAreaName().compareTo(targetedArea.getAreaName())==0) {	
                 return singleArea.subscribeDriver(newSub);
             }
         }

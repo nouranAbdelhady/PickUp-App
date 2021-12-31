@@ -45,5 +45,10 @@ public class PassengerService implements IPassengerService {
 		return passengerRepo.getRequestedRide(username);
 	}
 
+	@Override
+	public Ride getCurrentRide(Passenger targetedPassenger) {
+		return passengerRepo.getCurrentRide(targetedPassenger);
+	}
+
 
 }

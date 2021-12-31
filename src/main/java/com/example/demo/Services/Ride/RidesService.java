@@ -60,8 +60,8 @@ public class RidesService implements IRidesService{
     }
 
 	@Override
-	public boolean update(Ride toUpdate, Offer newOffer) {
-		return rideRep.update(toUpdate,newOffer);
+	public boolean addOffer(Ride toUpdate, Offer newOffer) {
+		return rideRep.addOffer(toUpdate,newOffer);
 	}
 
 	@Override
@@ -72,6 +72,11 @@ public class RidesService implements IRidesService{
 	@Override
 	public List<Offer> getOffers(int rideId) {
 		return rideRep.getOffers(rideId);
+	}
+
+	@Override
+	public boolean acceptOffer(Ride toStart, Offer acceptedOffer) {
+		return rideRep.acceptOffer(toStart,acceptedOffer);
 	}
 
 }
